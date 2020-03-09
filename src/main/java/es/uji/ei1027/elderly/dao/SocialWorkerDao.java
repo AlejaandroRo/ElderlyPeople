@@ -20,7 +20,28 @@ public class SocialWorkerDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    //Obtener todos los eldely
+    //Add SocialWorker to the db
+    public void addSocialWorker(SocialWorker socialWorker) {
+        jdbcTemplate.update("INSERT INTO socialworker VALUES(?, ?, ?, ?, ?)",
+                socialWorker.getName(), socialWorker.getUserCAS(), socialWorker.getPwd(), socialWorker.getPhoneNumber(), socialWorker.getEmail());
+    }
+
+    //Delete SocialWorker from db
+    public void deleteSocialWorker(String userCAS) {
+        jdbcTemplate.update("DELETE FROM socialworker WHERE userCAS = ?", userCAS);
+    }
+
+    //Get SocialWorker by UserCAS
+    public SocialWorker getSocialWorker(String userCAS) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM socialworker WHERE userCAS = ?", new SocialWorkerRowMapper(), userCAS);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    //Obtener todos los elderly
     public List<SocialWorker> getSocialWorkers() {
         try {
             return jdbcTemplate.query("SELECT * FROM socialworker", new SocialWorkerRowMapper());

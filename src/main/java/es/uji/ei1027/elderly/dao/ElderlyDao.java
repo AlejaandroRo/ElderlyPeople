@@ -19,20 +19,20 @@ public class ElderlyDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    //Añadir elderly a la base de datos
+    //Add Elderly to the db
     public void addElderly(Elderly elderly) {
-        jdbcTemplate.update("INSERT INTO elderly VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                            elderly.getName(), elderly.getDni(), elderly.getBirthDate(), elderly.getPhoneNumber(), elderly.getBankAccountNumber(),
-                            elderly.getEmail(), elderly.getUserPwd(), elderly.getDateCreation(), elderly.getAddress(), elderly.getUserCAS());
+        jdbcTemplate.update("INSERT INTO elderly VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                            elderly.getName(), elderly.getDni(),elderly.getSurname(), elderly.getBirthDate(), elderly.getPhoneNumber(), elderly.getBankAccountNumber(),
+                            elderly.getEmail(), elderly.getUserPwd(), elderly.getDateCreation(), elderly.getAlergies(), elderly.getDiseases(), elderly.getAddress(), elderly.getUserCAS());
     }
 
-    //Borrar elderly de la base de datos
-    public void deleteElderly(Elderly elderly) {
-        jdbcTemplate.update("DELETE FROM elderly WHERE dni = ?", elderly.getDni());
+    //Delete elderly from db
+    public void deleteElderly(String dni) {
+        jdbcTemplate.update("DELETE FROM elderly WHERE dni = ?", dni);
     }
 
 
-    //Actualizar atributos elderly
+    //Update elderly
 
     //Obtener Elderly por el nombre
     public Elderly getElderly(String name) {
