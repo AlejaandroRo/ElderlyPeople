@@ -8,21 +8,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/elderly")
 public class ElderlyController {
-    @RequestMapping("/elderly")
-    public String provaWeb(Model model) {
-        String message = "Provant la Web Elderly People";
-        model.addAttribute("message", message);
-        return "elderly";
-    }
+
+    private ElderlyDao elderlyDao;
 
     @Autowired
-    ElderlyDao elderlyDao;
+    public void setElderlyDao(ElderlyDao elderlyDao) {
+        this.elderlyDao = elderlyDao;
+    }
 
-    @RequestMapping("/provaElderly")
-    public String provaUnElderly(Model model) {
-        Elderly elderly = elderlyDao.getElderly("Daniel Navarro");
-        model.addAttribute("message", elderly.toString());
-        return "elderly";
+    @RequestMapping("/list")
+    public String listElderlies(Model model) {
+        model.addAttribute("elderlies", elderlyDao.getElderlies());
+        return "elderly/list";
     }
 }
