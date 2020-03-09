@@ -26,6 +26,12 @@ public class SocialWorkerDao {
                 socialWorker.getName(), socialWorker.getUserCAS(), socialWorker.getPwd(), socialWorker.getPhoneNumber(), socialWorker.getEmail());
     }
 
+    //Update elderly
+    public void updateSocialWorker(SocialWorker socialWorker) {
+        jdbcTemplate.update("UPDATE socialworker SET name=?, pwd=?, phoneNumber=?, email=? WHERE userCAS=?",
+                socialWorker.getName(), socialWorker.getPwd(), socialWorker.getPhoneNumber(), socialWorker.getEmail(), socialWorker.getUserCAS());
+    }
+
     //Delete SocialWorker from db
     public void deleteSocialWorker(String userCAS) {
         jdbcTemplate.update("DELETE FROM socialworker WHERE userCAS = ?", userCAS);

@@ -39,7 +39,7 @@ public class ElderlyController {
 
     @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)
     public String editElderly(Model model, @PathVariable String dni) {
-        model.addAttribute("elderly", elderlyDao.getElderly(dni));
+        model.addAttribute("elderly", elderlyDao.getElderlyByDni(dni));
         return "elderly/update";
     }
 

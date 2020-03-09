@@ -39,6 +39,22 @@ public class SocialWorkerController {
         return "redirect:list";
     }
 
+    @RequestMapping(value="/update/{userCAS}", method = RequestMethod.GET)
+    public String editSocialWorker(Model model, @PathVariable String userCAS) {
+        model.addAttribute("socialWorker", socialWorkerDao.getSocialWorker(userCAS));
+        return "socialWorker/update";
+    }
+
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(
+            @ModelAttribute("socialWorker") SocialWorker socialWorker,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "socialWorker/update";
+        socialWorkerDao.updateSocialWorker(socialWorker);
+        return "redirect:list";
+    }
+
     @RequestMapping(value="/delete/{userCAS}")
     public String processDelete(@PathVariable String userCAS) {
         socialWorkerDao.deleteSocialWorker(userCAS);
