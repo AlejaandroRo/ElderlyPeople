@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Elderlies</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Llista de Elderlies</h1>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Edat</th>
+        <th scope="col">BankAccount</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr  th:each="elderly: ${elderlies}">
+        <td th:text="${elderly.name}"></td>
+        <td th:text="${elderly.dni}"></td>
+        <td th:text="${elderly.surname}"></td>
+        <td th:text="${elderly.birthDate}"></td>
+        <td th:text="${elderly.phoneNumber}"></td>
+        <td th:text="${elderly.bankAccountNumber}"></td>
+        <td th:text="${elderly.email}"></td>
+        <td th:text="${elderly.userPwd}"></td>
+        <td th:text="${elderly.dateCreation}"></td>
+        <td th:text="${elderly.alergies}"></td>
+        <td th:text="${elderly.diseases}"></td>
+        <td th:text="${elderly.address}"></td>
+        <td th:text="${elderly.userCAS}"></td>
+
+        <td><a class="btn btn-warning" th:href="@{/elderly/update/{dni}(dni=${elderly.dni})} " role="button">Edita</a>
+        <td><a class="btn btn-danger" th:href="@{/elderly/delete/{dni}(nom=${elderly.dni})} " role="button">Esborra</a>
+    </tr>
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="add" role="button">Afegeix Elderly</a>
+</body>
+</html>
+
