@@ -39,7 +39,7 @@ public class ElderlyDao {
                 elderly.getEmail(), elderly.getUserPwd(), elderly.getDateCreation(), elderly.getAlergies(), elderly.getDiseases(), elderly.getAddress(), elderly.getUserCAS(), elderly.getDni());
     }
     //Obtener Elderly por el nombre
-    public Elderly getElderly(String name) {
+    public Elderly getElderlyByName(String name) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM elderly WHERE name = ?", new ElderlyRowMapper(), name);
         }
@@ -48,6 +48,14 @@ public class ElderlyDao {
         }
     }
     //Obtener elderly por el dni
+    public Elderly getElderlyByDNI(String dni) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM elderly WHERE dni = ?", new ElderlyRowMapper(), dni);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 
     //Obtener todos los eldely
     public List<Elderly> getElderlies() {
