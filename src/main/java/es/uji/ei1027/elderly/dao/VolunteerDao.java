@@ -20,6 +20,12 @@ public class VolunteerDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    //BORRAR VOLUNTEER
+    public void deleteVolunteer(String userV) {
+        jdbcTemplate.update("DELETE FROM volunteer WHERE userv = ?",
+                userV);
+    }
+
     //Obtener todos los volunteer
     public List<Volunteer> getVolunteers() {
         try {

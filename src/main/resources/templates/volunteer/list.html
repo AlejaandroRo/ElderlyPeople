@@ -26,9 +26,9 @@
         <td th:text="${volunteer.phoneNumber}"></td>
         <td th:text="${volunteer.email}"></td>
         <td th:text="${volunteer.applicationDate}"></td>
-        <td><a class="btn btn-primary" th:href="@{/volunteer/update/{name}(name=${volunteer.name})}" role="button">Editar</a>
+        <td><a class="btn btn-primary" th:href="@{/volunteer/update/{userV}(userV=${volunteer.userV})}" role="button">Editar</a>
         </td>
-        <td><a class="btn btn-danger"th:href="@{/volunteer/delete/{name}(name=${volunteer.name})}" role="button">Borrar</a>
+        <td><a class="btn btn-danger"th:href="@{/volunteer/delete/{userV}(userV=${volunteer.userV})}" role="button">Borrar</a>
         </td>
     </tr>
     </tbody>
