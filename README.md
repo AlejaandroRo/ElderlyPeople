@@ -1,3 +1,0 @@
-# ElderlyPeople
-
-# duda: boolean isAccepted()
