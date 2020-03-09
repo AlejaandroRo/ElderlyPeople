@@ -13,7 +13,7 @@ public final class VolunteerRowMapper implements RowMapper<Volunteer> {
         volunteer.setUserV(rs.getString("userV"));
         volunteer.setPhoneNumber(rs.getInt("phoneNumber"));
         volunteer.setEmail(rs.getString("email"));
-        volunteer.setApplicationDate(rs.getDate("date"));
+        volunteer.setApplicationDate(rs.getDate("applicationDate"));
         return volunteer;
     }
 }
