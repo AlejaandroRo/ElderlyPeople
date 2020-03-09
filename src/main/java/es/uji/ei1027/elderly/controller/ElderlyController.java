@@ -37,6 +37,22 @@ public class ElderlyController {
         return "redirect:list";
     }
 
+    @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)
+    public String editElderly(Model model, @PathVariable String dni) {
+        model.addAttribute("elderly", elderlyDao.getElderly(dni));
+        return "elderly/update";
+    }
+
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(
+            @ModelAttribute("elderly") Elderly elderly,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "elderly/update";
+        elderlyDao.updateElderly(elderly);
+        return "redirect:list";
+    }
+
     @RequestMapping(value="/delete/{dni}")
     public String processDelete(@PathVariable String dni) {
         elderlyDao.deleteElderly(dni);

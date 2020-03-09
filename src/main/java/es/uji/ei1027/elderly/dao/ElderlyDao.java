@@ -31,9 +31,13 @@ public class ElderlyDao {
         jdbcTemplate.update("DELETE FROM elderly WHERE dni = ?", dni);
     }
 
-
     //Update elderly
-
+    public void updateElderly(Elderly elderly) {
+        jdbcTemplate.update("UPDATE elderly SET name=?, surname=?, birthDate=?, phoneNumber=?, bankAccountNumber=?, email=?, userPwd=?, dateCreation=?," +
+                        " alergies=?, diseases=?, address=?, userCAS=? WHERE dni=?",
+                elderly.getName(),elderly.getSurname(), elderly.getBirthDate(), elderly.getPhoneNumber(), elderly.getBankAccountNumber(),
+                elderly.getEmail(), elderly.getUserPwd(), elderly.getDateCreation(), elderly.getAlergies(), elderly.getDiseases(), elderly.getAddress(), elderly.getUserCAS(), elderly.getDni());
+    }
     //Obtener Elderly por el nombre
     public Elderly getElderly(String name) {
         try {

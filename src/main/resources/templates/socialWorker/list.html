@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gestionar Elderlies</title>
+    <title>Social Worker management</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
-<h1>Llista de Social Workers</h1>
+<h1>Social Workers' list</h1>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -24,13 +24,13 @@
         <td th:text="${worker.userCAS}"></td>
         <td th:text="${worker.phoneNumber}"></td>
         <td th:text="${worker.email}"></td>
-        <td><a class="btn btn-primary" th:href="@{/elderly/update/{name}(name=${worker.name})}" role="button">Editar</a>
+        <td><a class="btn btn-primary" th:href="@{/socialWorker/update/{userCAS}(userCAS=${worker.userCAS})}" role="button">Editar</a>
         </td>
-        <td><a class="btn btn-danger"th:href="@{/elderly/delete/{name}(name=${worker.name})}" role="button">Borrar</a>
+        <td><a class="btn btn-danger" th:href="@{/socialWorker/delete/{userCAS}(userCAS=${worker.userCAS})}" role="button">Borrar</a>
         </td>
     </tr>
     </tbody>
 </table>
-<a class="btn btn-success" href="add" role="button">Añadir Social Worker</a>
+<a class="btn btn-success" href="add" role="button">Add Social Worker</a>
 </body>
 </html>

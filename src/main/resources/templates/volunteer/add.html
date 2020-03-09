@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create new Volunteer</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>New Volunteer</h2>
+<form action="#" th:action="@{/volunteer/add}"
+      th:object="${volunteer}" method="post">
+    <table>
+        <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}" required /></td>
+        </tr>
+        <tr>
+            <td><label>Phone Number</label></td>
+            <td><input type="number" th:field="*{phoneNumber}" required /></td>
+        </tr>
+        <tr>
+            <td><label>User</label></td>
+            <td><input type="text" th:field="*{userV}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td><input type="text" th:field="*{email}" required /></td>
+        </tr>
+        <tr>
+            <td><label>PWD</label></td>
+            <td><input type="text" th:field="*{pwd}" required /></td>
+        </tr>
+        <tr>
+            <td><label>Hobbies</label></td>
+            <td><input type="text" th:field="*{hobbies}"  /></td>
+        </tr>
+        <tr>
+            <td><label>Application date</label></td>
+            <td><input type="date" th:field="*{applicationDate}" required /></td>
+        </tr>
+        <tr>
+            <td><label>Acceptation date</label></td>
+            <td><input type="date" th:field="*{acceptationDate}"  /></td>
+        </tr>
+        <tr>
+            <td><label>Final date</label></td>
+            <td><input type="date" th:field="*{finalDate}"  /></td>
+        </tr>
+        <tr>
+            <td><label>Accepted</label></td>
+            <td><input type="number" th:field="*{accepted}" required /></td>
+        </tr>
+        <tr>
+            <td><label>Birth date</label></td>
+            <td><input type="date" th:field="*{birthDate}" required /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add volunteer" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

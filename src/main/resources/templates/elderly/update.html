@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create new elderly</title>
+    <title>Edit Elderly</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>New elderly</h2>
-<form action="#" th:action="@{/elderly/add}"
+<h2>Edit Elderly</h2>
+<form action="#" th:action="@{/elderly/update}"
       th:object="${elderly}" method="post">
     <table>
         <tr>
             <td><label>Name</label></td>
-            <td><input type="text" th:field="*{name}" required /></td>
+            <td><input type="text" th:field="*{name}" /></td>
         </tr>
         <tr>
             <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" required /></td>
+            <td><input type="text" th:field="*{dni}" /></td>
         </tr>
         <tr>
             <td><label>Surname</label></td>
@@ -26,27 +25,27 @@
         </tr>
         <tr>
             <td><label>BirthDate</label></td>
-            <td><input type="date" th:field="*{birthDate}" required /></td>
+            <td><input type="date" th:field="*{birthDate}" /></td>
         </tr>
         <tr>
             <td><label>Phone Number</label></td>
-            <td><input type="number" th:field="*{phoneNumber}" required /></td>
+            <td><input type="number" th:field="*{phoneNumber}" /></td>
         </tr>
         <tr>
             <td><label>Bank Account Number</label></td>
-            <td><input type="text" th:field="*{bankAccountNumber}" required /></td>
+            <td><input type="number" th:field="*{bankAccountNumber}" /></td>
         </tr>
         <tr>
             <td><label>Email</label></td>
-            <td><input type="text" th:field="*{email}" required /></td>
+            <td><input type="text" th:field="*{email}" /></td>
         </tr>
         <tr>
             <td><label>User PWD</label></td>
-            <td><input type="text" th:field="*{userPwd}" required /></td>
+            <td><input type="text" th:field="*{userPwd}" /></td>
         </tr>
         <tr>
             <td><label>Date Creation</label></td>
-            <td><input type="date" th:field="*{dateCreation}" required /></td>
+            <td><input type="date" th:field="*{dateCreation}" /></td>
         </tr>
         <tr>
             <td><label>Alergies</label></td>
@@ -58,14 +57,14 @@
         </tr>
         <tr>
             <td><label>Address</label></td>
-            <td><input type="text" th:field="*{address}" required /></td>
+            <td><input type="text" th:field="*{address}" /></td>
         </tr>
         <tr>
             <td><label>User CAS</label></td>
-            <td><input type="text" th:field="*{userCAS}" required /></td>
+            <td><input type="text" th:field="*{userCAS}" /></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Add elderly" /></td>
+            <td colspan="2"><input type="submit" value="Update Elderly" /></td>
         </tr>
     </table>
 </form>

@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gestionar Elderlies</title>
+    <title>Elderly management</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
-<h1>Llista de Elderlies</h1>
+<h1>Elderlies' list</h1>
 
 <table class="table table-striped">
     <thead>
@@ -15,9 +15,16 @@
         <th scope="col">Name</th>
         <th scope="col">DNI</th>
         <th scope="col">Surname</th>
-        <th scope="col">Edat</th>
+        <th scope="col">Birth Date</th>
+        <th scope="col">Phone Number</th>
         <th scope="col">BankAccount</th>
-
+        <th scope="col">Email</th>
+        <th scope="col">UserPwd</th>
+        <th scope="col">Date Creation</th>
+        <th scope="col">Alergies</th>
+        <th scope="col">Diseases</th>
+        <th scope="col">Address</th>
+        <th scope="col">User CAS</th>
     </tr>
     </thead>
     <tbody>
@@ -42,7 +49,7 @@
     </tbody>
 </table>
 
-<a class="btn btn-primary" href="add" role="button">Afegeix Elderly</a>
+<a class="btn btn-primary" href="add" role="button">Add Elderly</a>
 </body>
 </html>
 

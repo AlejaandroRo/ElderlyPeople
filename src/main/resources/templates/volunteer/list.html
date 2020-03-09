@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gestionar Elderlies</title>
+    <title> Volunteer management</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
-<h1>Llista de Volunteers</h1>
+<h1>Volunteers' list</h1>
 <table class="table table-striped">
     <thead>
     <tr>
         <th>Name</th>
-        <th>User</th>
         <th>Phone number</th>
+        <th>User</th>
         <th>Email</th>
+        <th>Pwd</th>
+        <th>Hobbies</th>
         <th>Application Date</th>
+        <th>Acceptation Date</th>
+        <th>Final Date</th>
+        <th>Accepted</th>
+        <th>Birth Date</th>
         <th></th>
         <th></th>
     </tr>
@@ -22,17 +28,24 @@
     <tbody>
     <tr th:each="volunteer: ${volunteers}">
         <td th:text="${volunteer.name}"></td>
-        <td th:text="${volunteer.userV}"></td>
         <td th:text="${volunteer.phoneNumber}"></td>
+        <td th:text="${volunteer.userV}"></td>
         <td th:text="${volunteer.email}"></td>
+        <td th:text="${volunteer.pwd}"></td>
+        <td th:text="${volunteer.hobbies}"></td>
         <td th:text="${volunteer.applicationDate}"></td>
-        <td><a class="btn btn-primary" th:href="@{/volunteer/update/{userV}(userV=${volunteer.userV})}" role="button">Editar</a>
+        <td th:text="${volunteer.acceptationDate}"></td>
+        <td th:text="${volunteer.finalDate}"></td>
+        <td th:text="${volunteer.accepted}"></td>
+        <td th:text="${volunteer.birthDate}"></td>
+
+        <td><a class="btn btn-primary" th:href="@{/volunteer/update/{userV}(userV=${volunteer.userV})}" role="button">Edit</a>
         </td>
-        <td><a class="btn btn-danger"th:href="@{/volunteer/delete/{userV}(userV=${volunteer.userV})}" role="button">Borrar</a>
+        <td><a class="btn btn-danger"th:href="@{/volunteer/delete/{userV}(userV=${volunteer.userV})}" role="button">Delete</a>
         </td>
     </tr>
     </tbody>
 </table>
-<a class="btn btn-success" href="add" role="button">Añadir Volunteer</a>
+<a class="btn btn-success" href="add" role="button">Add Volunteer</a>
 </body>
 </html>
