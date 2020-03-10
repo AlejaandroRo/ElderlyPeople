@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create new Social Worker</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>New Social Worker</h2>
+<form action="#" th:action="@{/socialWorker/add}"
+      th:object="${socialWorker}" method="post">
+    <table>
+        <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}" required /></td>
+        </tr>
+        <tr>
+            <td><label>User CAS</label></td>
+            <td><input type="text" th:field="*{userCAS}" required /></td>
+        </tr>
+        <tr>
+            <td><label>pwd</label></td>
+            <td><input type="text" th:field="*{pwd}" required /></td>
+        </tr>
+
+        <tr>
+            <td><label>Phone Number</label></td>
+            <td><input type="number" th:field="*{phoneNumber}" required /></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td><input type="text" th:field="*{email}" required /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add Social Worker" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
