@@ -40,8 +40,8 @@ public class ContractController {
 
     @RequestMapping(value="/update/{number}", method = RequestMethod.GET)
     public String editContract(Model model, @PathVariable int number) {
-        model.addAttribute("company", contractDao.getCompanyByNumber(number));
-        return "company/update";
+        model.addAttribute("contract", contractDao.getContractByNumber(number));
+        return "contract/update";
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
@@ -56,5 +56,11 @@ public class ContractController {
     public String processDelete(@PathVariable int number) {
         contractDao.deleteContract(number);
         return "redirect:../list";
+    }
+
+    @RequestMapping("/list")
+    public String listContracts(Model model) {
+        model.addAttribute("contracts", contractDao.getContracts());
+        return "contracts/list";
     }
 }

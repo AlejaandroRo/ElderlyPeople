@@ -22,7 +22,7 @@ public class ContractDao {
 
     //AddContract
     public void addContract(Contract contract) {
-        jdbcTemplate.update("INSERT INTO company VALUEs(?,?,?,?,?,?,?,?,?)", contract.getNumber(), contract.getDateBeginning(),
+        jdbcTemplate.update("INSERT INTO company VALUEs(?, ?, ?, ?, ?, ?, ?, ?, ?)", contract.getNumber(), contract.getDateBeginning(),
                 contract.getDateEnding(), contract.getDescription(), contract.getServiceType(), contract.getQuantityServices(),
                 contract.getUnitsOfMeasure(), contract.getPriceUnit(), contract.getCifCompany());
     }
@@ -41,7 +41,7 @@ public class ContractDao {
     }
 
     //Obtener contract por numero
-    public Contract getCompanyByNumber(int number) {
+    public Contract getContractByNumber(int number) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM contract WHERE number = ?", new ContractRowMapper(), number);
         }
