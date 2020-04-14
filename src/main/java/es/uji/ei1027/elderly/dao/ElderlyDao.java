@@ -38,6 +38,7 @@ public class ElderlyDao {
                 elderly.getName(),elderly.getSurname(), elderly.getBirthDate(), elderly.getPhoneNumber(), elderly.getBankAccountNumber(),
                 elderly.getEmail(), elderly.getUserPwd(), elderly.getDateCreation(), elderly.getAlergies(), elderly.getDiseases(), elderly.getAddress(), elderly.getUserCAS(), elderly.getDni());
     }
+
     //Obtener Elderly por el nombre
     public Elderly getElderlyByName(String name) {
         try {

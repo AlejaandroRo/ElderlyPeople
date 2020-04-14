@@ -61,6 +61,6 @@ public class ContractController {
     @RequestMapping("/list")
     public String listContracts(Model model) {
         model.addAttribute("contracts", contractDao.getContracts());
-        return "contracts/list";
+        return "contract/list";
     }
 }

@@ -5,7 +5,7 @@ public class Company {
     private String cif;
     private String address;
     private String contactPersonName;
-    private String contactPersonPhoneNumber;
+    private int contactPersonPhoneNumber;
     private String contactPersonEmail;
     private String serviceType;
 
@@ -36,19 +36,19 @@ public class Company {
         this.address = address;
     }
 
-    public String getContractPersonName() {
+    public String getContactPersonName() {
         return contactPersonName;
     }
 
-    public void setContractPersonName(String contractPersonName) {
-        this.contactPersonName = contractPersonName;
+    public void setContactPersonName(String contactPersonName) {
+        this.contactPersonName = contactPersonName;
     }
 
-    public String getContactPersonPhoneNumber() {
+    public int getContactPersonPhoneNumber() {
         return contactPersonPhoneNumber;
     }
 
-    public void setContactPersonPhoneNumber(String contactPersonPhoneNumber) {
+    public void setContactPersonPhoneNumber(int contactPersonPhoneNumber) {
         this.contactPersonPhoneNumber = contactPersonPhoneNumber;
     }
 

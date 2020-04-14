@@ -1,10 +1,49 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create new Volunteer</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-
+<h2>New Company</h2>
+<form action="#" th:action="@{/company/add}"
+      th:object="${company}" method="post">
+    <table>
+        <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}" required /></td>
+        </tr>
+        <tr>
+            <td><label>CIF</label></td>
+            <td><input type="text" th:field="*{cif}" required /></td>
+        </tr>
+        <tr>
+            <td><label>Address</label></td>
+            <td><input type="text" th:field="*{address}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Contact person</label></td>
+            <td><input type="text" th:field="*{contactPersonName}" required /></td>
+        </tr>
+        <tr>
+            <td><label>Contact Person Phone Number</label></td>
+            <td><input type="number" th:field="*{contactPersonPhoneNumber}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Contact Person Email</label></td>
+            <td><input type="text" th:field="*{contactPersonEmail}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Service Type</label></td>
+            <td><input type="text" th:field="*{serviceType}" required/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add Company" /></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

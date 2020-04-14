@@ -1,7 +1,6 @@
 package es.uji.ei1027.elderly.dao;
 
 import es.uji.ei1027.elderly.model.Company;
-import es.uji.ei1027.elderly.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,7 +22,7 @@ public class CompanyDao {
     //Add company
     public void addCompany(Company company) {
         jdbcTemplate.update("INSERT INTO company VALUES(?, ?, ?, ?, ?, ?, ?)",
-                company.getName(), company.getCif(), company.getAddress(), company.getContractPersonName(), company.getContactPersonPhoneNumber(),
+                company.getName(), company.getCif(), company.getAddress(), company.getContactPersonName(), company.getContactPersonPhoneNumber(),
                 company.getContactPersonEmail(), company.getServiceType());
     }
 
@@ -36,7 +35,7 @@ public class CompanyDao {
     public void updateCompany(Company company) {
         jdbcTemplate.update("UPDATE company SET name=?, cif=?, address=?, contactPersonName=?, contactPersonPhoneNumber=?," +
                         " contactPersonEmail=?, serviceType=? WHERE cif=?",
-                company.getName(), company.getCif(), company.getAddress(), company.getContractPersonName(),
+                company.getName(), company.getCif(), company.getAddress(), company.getContactPersonName(),
                 company.getContactPersonPhoneNumber(),company.getContactPersonEmail(), company.getServiceType(), company.getCif());
     }
     //Obtener Company por el nombre
