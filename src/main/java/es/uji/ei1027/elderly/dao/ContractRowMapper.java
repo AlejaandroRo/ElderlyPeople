@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ContractRowMapper implements RowMapper<Contract> {
+public final class ContractRowMapper implements RowMapper<Contract> {
     public Contract mapRow(ResultSet rs, int rowNum) throws SQLException {
         Contract contract = new Contract();
         contract.setNumber(rs.getInt("number"));

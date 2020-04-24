@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
     <title> Volunteer management</title>
     <meta charset="UTF-8" />
@@ -7,6 +9,8 @@
 </head>
 <body>
 <h1>Volunteers' list</h1>
+
+<div layout:fragment="content">
 <table class="table table-striped">
     <thead>
     <tr>
@@ -47,5 +51,6 @@
     </tbody>
 </table>
 <a class="btn btn-success" href="add" role="button">Add Volunteer</a>
+</div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
     <title>Social Worker management</title>
     <meta charset="UTF-8" />
@@ -7,6 +9,8 @@
 </head>
 <body>
 <h1>Social Workers' list</h1>
+
+<div layout:fragment="content">
 <table class="table table-striped">
     <thead>
     <tr>
@@ -32,5 +36,6 @@
     </tbody>
 </table>
 <a class="btn btn-success" href="add" role="button">Add Social Worker</a>
+</div>
 </body>
 </html>

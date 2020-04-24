@@ -1,6 +1,8 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
     <title>Elderly management</title>
     <meta charset="UTF-8" />
@@ -11,6 +13,7 @@
 <body>
 <h1>Elderlies list</h1>
 
+<div layout:fragment="content">
 <table class="table table-striped">
     <thead>
     <tr>
@@ -45,13 +48,16 @@
         <td th:text="${elderly.address}"></td>
         <td th:text="${elderly.userCAS}"></td>
 
+        <td><a class="btn btn-primary" th:href="@{/request/list/{dniElderly}(dniElderly=${elderly.dni})} " role="button">Ver Request</a>
         <td><a class="btn btn-warning" th:href="@{/elderly/update/{dni}(dni=${elderly.dni})} " role="button">Edita</a>
         <td><a class="btn btn-danger" th:href="@{/elderly/delete/{dni}(dni=${elderly.dni})} " role="button">Esborra</a>
+
     </tr>
     </tbody>
 </table>
 
 <a class="btn btn-primary" href="add" role="button">Add Elderly</a>
+</div>
 </body>
 </html>
 

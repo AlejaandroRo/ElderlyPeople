@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Contract management</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
+</head>
+<body>
+<h1>Contract list</h1>
+
+<div layout:fragment="content">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Service Type</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">State</th>
+            <th scope="col">Approved Date</th>
+            <th scope="col">Rejected Date</th>
+            <th scope="col">Comments</th>
+            <th scope="col">End Date</th>
+            <th scope="col">DNI Elderly</th>
+            <th scope="col">Number Contract</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="request: ${requests}">
+            <td th:text="${request.number}"></td>
+            <td th:text="${request.serviceType}"></td>
+            <td th:text="${request.creationDate}"></td>
+            <td th:text="${request.state}"></td>
+            <td th:text="${request.approvedDate}"></td>
+            <td th:text="${request.rejectedDate}"></td>
+            <td th:text="${request.comments}"></td>
+            <td th:text="${request.endDate}"></td>
+            <td th:text="${request.dniElderly}"></td>
+            <td th:text="${request.numberContract}"></td>
+
+
+
+            <td><a class="btn btn-warning" th:href="@{/request/update/{number}(number=${request.number})} " role="button">Edita</a>
+            <td><a class="btn btn-danger" th:href="@{/request/delete/{number}(number=${request.number})} " role="button">Esborra</a>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="add" role="button">Add Request</a>
+</div>
+</body>
+</html>
+

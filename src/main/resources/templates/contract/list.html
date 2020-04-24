@@ -1,6 +1,8 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
     <title>Contract management</title>
     <meta charset="UTF-8" />
@@ -11,6 +13,7 @@
 <body>
 <h1>Contract list</h1>
 
+<div layout:fragment="content">
 <table class="table table-striped">
     <thead>
     <tr>
@@ -46,6 +49,7 @@
 </table>
 
 <a class="btn btn-primary" href="add" role="button">Add Contract</a>
+</div>
 </body>
 </html>
 
