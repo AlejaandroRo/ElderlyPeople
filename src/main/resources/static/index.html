@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>EI1027</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styleIndex.css"
+          th:href="@{/css/styleIndex.css}"/>
 </head>
 <body>
-<h1>EI1027 - Spring MVC</h1>
-<h2>Pruebas de la applicacion</h2>
-<ul>
+<h1>¡BIENVENIDO!</h1>
+<h2>Elderly Home</h2>
+<div class="container">
+    <table>
+        <tr>
+            <td><a class="btn btn1" href="elderly/list">Soy Elderly</a></td>
+            <td><a class="btn btn1" href="socialWorker/list">Soy SocialWorker</a></td>
+            <td><a class="btn btn1" href="volunteer/list">Soy DAO Volunteer</a></td>
+            <td><a class="btn btn1" href="company/list">Soy DAO Company</a></td>
+            <td><a class="btn btn1" href="contract/list">Soy DAO Contract</a></td>
+            <td><a class="btn btn1" href="invoice/list">Soy DAO Invoice</a></td>
+            <td><a class="btn btn1" href="request/list">Soy DAO Request</a></td>
+        </tr>
+    </table>
+</div>
+<!--<ul>
     <li><a href="elderly/list">Prova DAO Elderly</a></li>
     <li><a href="socialWorker/list">Prova DAO SocialWorker</a></li>
     <li><a href="volunteer/list">Prova DAO Volunteer</a></li>
@@ -17,6 +32,6 @@
     <li><a href="invoice/list">Prova DAO Invoice</a></li>
     <li><a href="request/list">Prova DAO Request</a></li>
 
-</ul>
+</ul>-->
 </body>
 </html>
