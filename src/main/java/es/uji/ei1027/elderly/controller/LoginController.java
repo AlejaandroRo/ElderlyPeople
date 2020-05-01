@@ -2,8 +2,6 @@ package es.uji.ei1027.elderly.controller;
 
 import javax.servlet.http.HttpSession;
 
-import es.uji.ei1027.elderly.dao.UserDao;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +13,25 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import es.uji.ei1027.elderly.dao.ElderlyDao;
+import es.uji.ei1027.elderly.dao.UserDao;
 import es.uji.ei1027.elderly.model.UserDetails;
 
-import java.util.Arrays;
-import java.util.List;
+class UserValidator implements Validator {
+    @Override
+    public boolean supports(Class<?> cls) {
+        return UserDetails.class.isAssignableFrom(cls);
+    }
+    @Override
+    public void validate(Object obj, Errors errors) {
+        UserDetails userDetails = (UserDetails)obj;
+        if(userDetails.getUsername().equals("")) {
+            errors.rejectValue("username", "obligatorio", "Debes introducir un nombre de usuario");
+        }
+        if (userDetails.getPassword().equals("")) {
+            errors.rejectValue("password", "obligatoria", "Tienes que introducir una contraseña");
+        }
+    }
+}
 
 @Controller
 public class LoginController {
@@ -52,8 +64,8 @@ public class LoginController {
         session.setAttribute("user", user);
         String nextUrl = (String) session.getAttribute("nextUrl");
         session.removeAttribute("nextUrl");
-        // que vaya al elderly
-        return "redirect:/" + nextUrl;
+        // Torna a la pàgina principal
+        return "redirect:" + nextUrl;
     }
 
     @RequestMapping("/logout")
@@ -62,5 +74,3 @@ public class LoginController {
         return "redirect:/";
     }
 }
-
-

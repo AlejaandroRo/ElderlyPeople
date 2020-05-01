@@ -1,6 +1,5 @@
 package es.uji.ei1027.elderly.dao;
 
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
