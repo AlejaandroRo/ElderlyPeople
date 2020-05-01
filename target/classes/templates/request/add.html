@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create new elderly</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-
+<h2>New request</h2>
+<div layout:fragment="content">
+<form action="#" th:action="@{/request/add}"
+      th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td><label>Number</label></td>
+            <td><input type="number" th:field="*{number}" required /></td>
+        </tr>
+        <tr>
+            <td><label>Service Type</label></td>
+            <td><input type="text" th:field="*{serviceType}" required /></td>
+        </tr>
+        <tr>
+            <td><label>Creation Date</label></td>
+            <td><input type="date" th:field="*{creationDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Comments</label></td>
+            <td><input type="text" th:field="*{comments}"/></td>
+        </tr>
+        <tr>
+            <td><label>End Date</label></td>
+            <td><input type="date" th:field="*{endDate}"/></td>
+        </tr>
+        <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dniElderly}" required /></td>
+        </tr>
+        <tr>
+            <td><label>Number contract</label></td>
+            <td><input type="number" th:field="*{numberContract}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add request" /></td>
+        </tr>
+    </table>
+</form>
+</div>
 </body>
 </html>

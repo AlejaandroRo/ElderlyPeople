@@ -44,15 +44,13 @@
             <td th:text="${request.dniElderly}"></td>
             <td th:text="${request.numberContract}"></td>
 
-
-
             <td><a class="btn btn-warning" th:href="@{/request/update/{number}(number=${request.number})} " role="button">Edita</a>
             <td><a class="btn btn-danger" th:href="@{/request/delete/{number}(number=${request.number})} " role="button">Esborra</a>
         </tr>
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="add" role="button">Add Request</a>
+    <a class="btn btn-primary" href="../add" role="button">Add Request</a>
 </div>
 </body>
 </html>

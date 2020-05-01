@@ -36,7 +36,10 @@
             <td th:text="${request.number}"></td>
             <td th:text="${request.serviceType}"></td>
             <td th:text="${request.creationDate}"></td>
-            <td th:text="${request.state}"></td>
+            <td th:text="${request.state}"
+                th:class="${#strings.equals(request.state, 'Aceptada')} ? text-success"></td>
+
+
             <td th:text="${request.approvedDate}"></td>
             <td th:text="${request.rejectedDate}"></td>
             <td th:text="${request.comments}"></td>
@@ -52,7 +55,7 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="add" role="button">Add Request</a>
+    <a class="btn btn-primary" href="../add" role="button">Add Request</a>
 </div>
 </body>
 </html>
