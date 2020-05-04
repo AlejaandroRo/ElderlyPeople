@@ -2,6 +2,8 @@ package es.uji.ei1027.elderly.controller;
 
 import javax.servlet.http.HttpSession;
 
+import es.uji.ei1027.elderly.dao.ElderlyDao;
+import es.uji.ei1027.elderly.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +39,7 @@ class UserValidator implements Validator {
 public class LoginController {
     @Autowired
     private UserDao userDao;
+    private ElderlyDao elderlyDao;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -61,11 +64,12 @@ public class LoginController {
         }
         // Autenticats correctament.
         // Guardem les dades de l'usuari autenticat a la sessió
-        session.setAttribute("user", user);
+        Elderly elderly = elderlyDao.getElderlyByName(user.getUsername());
+        session.setAttribute("user", elderly);
         String nextUrl = (String) session.getAttribute("nextUrl");
         session.removeAttribute("nextUrl");
         // Torna a la pàgina principal
-        return "redirect:" + nextUrl;
+        return "redirect:" + "inicios/inicioElderly";
     }
 
     @RequestMapping("/logout")

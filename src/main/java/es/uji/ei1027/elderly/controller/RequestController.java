@@ -34,8 +34,9 @@ public class RequestController {
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "request/add";
+        String dni = request.getDniElderly();
         requestDao.addRequest(request);
-        return "redirect:list";
+        return "redirect:list/" + dni;
     }
 
     @RequestMapping(value="/update/{number}", method = RequestMethod.GET)
@@ -59,8 +60,6 @@ public class RequestController {
         requestDao.deleteRequest(number);
         return "redirect:../list";
     }
-
-
 
     @RequestMapping("/list")
     public String listRequests(Model model) {

@@ -26,16 +26,18 @@ public class UserController {
 
     @RequestMapping("/list")
     public String listSocis(HttpSession session, Model model) {
-        if (session.getAttribute("user") == null)
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyDao elderlyDao = new ElderlyDao();
+        Elderly elderly;
+        if (user == null)
         {
-            ElderlyDao elderlyDao = new ElderlyDao();
-            Elderly elderly = elderlyDao.getElderlyByName("user");
-            elderly.toString();
-            model.addAttribute("user", new UserDetails());
-            session.setAttribute("nextUrl", "request/list/" + elderly.getDni());
+            elderly = elderlyDao.getElderlyByName(user.getUsername());
+            model.addAttribute("user", elderly);
+            session.setAttribute("nextUrl", "inicios/inicioElderly");
             return "login";
         }
-        model.addAttribute("users", userDao.listAllUsers());
-        return "user/list";
+        elderly = elderlyDao.getElderlyByName(user.getUsername());
+        model.addAttribute("user", elderly);
+        return "inicios/inicioElderly";
     }
 }

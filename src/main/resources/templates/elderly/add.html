@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -8,9 +7,12 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
 </head>
 <body>
 <h2>New elderly</h2>
+<div layout:fragment="content">
 <form action="#" th:action="@{/elderly/add}"
       th:object="${elderly}" method="post">
     <table>
@@ -71,5 +73,6 @@
         </tr>
     </table>
 </form>
+</div>
 </body>
 </html>

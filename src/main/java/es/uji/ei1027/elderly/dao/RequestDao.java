@@ -21,8 +21,8 @@ public class RequestDao {
 
     //Add request
     public void addRequest(Request request) {
-        jdbcTemplate.update("INSERT INTO request VALUES(?, ?, ?,? ?, ?, ?, ?, ?)", request.getNumber(), request.getServiceType(), request.getCreationDate(),
-                request.getState(), request.getApprovedDate(), request.getRejectedDate(), request.getComments(), request.getEndDate(), request.getDniElderly(),
+        jdbcTemplate.update("INSERT INTO request VALUES(?, ?, current_date, 'Pendiente', ?, ?, ?, ?, ?, ?)", request.getNumber(), request.getServiceType(),
+                request.getApprovedDate(), request.getRejectedDate(), request.getComments(), request.getEndDate(), request.getDniElderly(),
                 request.getNumberContract());
     }
     //Update
