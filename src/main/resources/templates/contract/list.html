@@ -28,12 +28,12 @@
         <th scope="col">CIF Company</th>
 
     </tr>
-    </thead>
+    </thead>Beginning
     <tbody>
     <tr  th:each="contract: ${contracts}">
         <td th:text="${contract.number}"></td>
-        <td th:text="${contract.dateBeginning}"></td>
-        <td th:text="${contract.dateEnding}"></td>
+        <td th:text="${#temporals.format(contract.dateBeginning,'dd/MM/yyyy')}"></td>
+        <td th:text="${#temporals.format(contract.dateEnding,'dd/MM/yyyy')}"></td>
         <td th:text="${contract.description}"></td>
         <td th:text="${contract.serviceType}"></td>
         <td th:text="${contract.quantityServices}"></td>

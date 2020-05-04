@@ -1,17 +1,22 @@
 package es.uji.ei1027.elderly.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Elderly {
     private String name;
     private String dni;
     private String surname;
-    private Date birthDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate birthDate;
     private int phoneNumber;
     private String bankAccountNumber;
     private String email;
     private String userPwd;
-    private Date dateCreation;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate dateCreation;
     private String alergies;
     private String diseases;
     private String address;
@@ -44,11 +49,11 @@ public class Elderly {
         this.surname = surname;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -84,11 +89,11 @@ public class Elderly {
         this.userPwd = userPwd;
     }
 
-    public Date getDateCreation() {
+    public LocalDate getDateCreation() {
         return dateCreation;
     }
 
-    public void setDateCreation(Date dateCreation) {
+    public void setDateCreation(LocalDate dateCreation) {
         this.dateCreation = dateCreation;
     }
 

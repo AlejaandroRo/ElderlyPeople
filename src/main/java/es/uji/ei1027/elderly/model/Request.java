@@ -1,16 +1,23 @@
 package es.uji.ei1027.elderly.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Request {
     private int number;
     private String serviceType;
-    private Date creationDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate creationDate;
     private String state;
-    private Date approvedDate;
-    private Date rejectedDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate approvedDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate rejectedDate;
     private String comments;
-    private Date endDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate endDate;
     private String dniElderly;
     private int numberContract;
 
@@ -30,11 +37,11 @@ public class Request {
         this.serviceType = serviceType;
     }
 
-    public Date getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -46,19 +53,19 @@ public class Request {
         this.state = state;
     }
 
-    public Date getApprovedDate() {
+    public LocalDate getApprovedDate() {
         return approvedDate;
     }
 
-    public void setApprovedDate(Date approvedDate) {
+    public void setApprovedDate(LocalDate approvedDate) {
         this.approvedDate = approvedDate;
     }
 
-    public Date getRejectedDate() {
+    public LocalDate getRejectedDate() {
         return rejectedDate;
     }
 
-    public void setRejectedDate(Date rejectedDate) {
+    public void setRejectedDate(LocalDate rejectedDate) {
         this.rejectedDate = rejectedDate;
     }
 
@@ -70,11 +77,11 @@ public class Request {
         this.comments = comments;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

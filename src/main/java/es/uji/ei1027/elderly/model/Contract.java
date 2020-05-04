@@ -1,11 +1,16 @@
 package es.uji.ei1027.elderly.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Contract {
     private int number;
-    private Date dateBeginning;
-    private Date dateEnding;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate dateBeginning;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate dateEnding;
     private String description;
     private String serviceType;
     private int quantityServices;
@@ -24,19 +29,19 @@ public class Contract {
         this.number = number;
     }
 
-    public Date getDateBeginning() {
+    public LocalDate getDateBeginning() {
         return dateBeginning;
     }
 
-    public void setDateBeginning(Date dateBeginning) {
+    public void setDateBeginning(LocalDate dateBeginning) {
         this.dateBeginning = dateBeginning;
     }
 
-    public Date getDateEnding() {
+    public LocalDate getDateEnding() {
         return dateEnding;
     }
 
-    public void setDateEnding(Date dateEnding) {
+    public void setDateEnding(LocalDate dateEnding) {
         this.dateEnding = dateEnding;
     }
 

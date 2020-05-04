@@ -1,9 +1,13 @@
 package es.uji.ei1027.elderly.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Invoice {
-    private Date date;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate date;
     private int number;
     private int amount;
     private String concept;
@@ -12,11 +16,11 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

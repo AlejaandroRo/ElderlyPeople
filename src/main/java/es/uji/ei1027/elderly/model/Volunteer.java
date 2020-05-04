@@ -1,6 +1,9 @@
 package es.uji.ei1027.elderly.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Volunteer {
     private String name;
@@ -9,11 +12,15 @@ public class Volunteer {
     private String email;
     private String pwd;
     private String hobbies;
-    private Date applicationDate;
-    private Date acceptationDate;
-    private Date finalDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate applicationDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate acceptationDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate finalDate;
     private boolean accepted;
-    private Date birthDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate birthDate;
 
     public Volunteer() {
     }
@@ -66,27 +73,27 @@ public class Volunteer {
         this.hobbies = hobbies;
     }
 
-    public Date getApplicationDate() {
+    public LocalDate getApplicationDate() {
         return applicationDate;
     }
 
-    public void setApplicationDate(Date applicationDate) {
+    public void setApplicationDate(LocalDate applicationDate) {
         this.applicationDate = applicationDate;
     }
 
-    public Date getAcceptationDate() {
+    public LocalDate getAcceptationDate() {
         return acceptationDate;
     }
 
-    public void setAcceptationDate(Date acceptationDate) {
+    public void setAcceptationDate(LocalDate acceptationDate) {
         this.acceptationDate = acceptationDate;
     }
 
-    public Date getFinalDate() {
+    public LocalDate getFinalDate() {
         return finalDate;
     }
 
-    public void setFinalDate(Date finalDate) {
+    public void setFinalDate(LocalDate finalDate) {
         this.finalDate = finalDate;
     }
 
@@ -98,11 +105,11 @@ public class Volunteer {
         this.accepted = accepted;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

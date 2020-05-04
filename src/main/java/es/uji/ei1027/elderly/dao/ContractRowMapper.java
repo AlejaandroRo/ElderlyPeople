@@ -6,13 +6,14 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public final class ContractRowMapper implements RowMapper<Contract> {
     public Contract mapRow(ResultSet rs, int rowNum) throws SQLException {
         Contract contract = new Contract();
         contract.setNumber(rs.getInt("number"));
-        contract.setDateBeginning(rs.getDate("dateBeginning"));
-        contract.setDateEnding(rs.getDate("dateEnding"));
+        contract.setDateBeginning(rs.getObject("dateBeginning", LocalDate.class));
+        contract.setDateEnding(rs.getObject("dateEnding", LocalDate.class));
         contract.setDescription(rs.getString("description"));
         contract.setServiceType(rs.getString("serviceType"));
         contract.setQuantityServices(rs.getInt("quantityService"));

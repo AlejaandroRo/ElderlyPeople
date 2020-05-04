@@ -20,7 +20,12 @@
         </tr>
         <tr>
             <td><label>Service Type</label></td>
-            <td><input type="text" th:field="*{serviceType}" required /></td>
+            <td><select class="form_control" type="text" th:field="*{serviceType}" required />
+                <option value="No seleccionado">Selecciona el servicio</option>
+                <option value="Comida a domicilio">Comida a domicilio</option>
+                <option value="Servicio sanitario">Servicio sanitario</option>
+                <option value="Limpieza">Limpieza</option></td>
+            <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}"></td>
         </tr>
         <tr>
             <td><label>Comments</label></td>
@@ -33,6 +38,7 @@
         <tr>
             <td><label>DNI</label></td>
             <td><input type="text" th:field="*{dniElderly}" required /></td>
+            <td th:if="${#fields.hasErrors('dniElderly')}" th:errors="*{dniElderly}"></td>
         </tr>
         <tr>
             <td><label>Number contract</label></td>

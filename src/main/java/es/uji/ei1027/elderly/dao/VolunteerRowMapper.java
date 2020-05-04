@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public final class VolunteerRowMapper implements RowMapper<Volunteer> {
     public Volunteer mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -13,7 +14,7 @@ public final class VolunteerRowMapper implements RowMapper<Volunteer> {
         volunteer.setUserV(rs.getString("userV"));
         volunteer.setPhoneNumber(rs.getInt("phoneNumber"));
         volunteer.setEmail(rs.getString("email"));
-        volunteer.setApplicationDate(rs.getDate("applicationDate"));
+        volunteer.setApplicationDate(rs.getObject("applicationDate", LocalDate.class));
         return volunteer;
     }
 }

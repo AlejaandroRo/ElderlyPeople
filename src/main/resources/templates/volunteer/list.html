@@ -37,11 +37,11 @@
         <td th:text="${volunteer.email}"></td>
         <td th:text="${volunteer.pwd}"></td>
         <td th:text="${volunteer.hobbies}"></td>
-        <td th:text="${volunteer.applicationDate}"></td>
-        <td th:text="${volunteer.acceptationDate}"></td>
-        <td th:text="${volunteer.finalDate}"></td>
+        <td th:text="${#temporals.format(volunteer.applicationDate,'dd/MM/yyyy')}"></td>
+        <td th:text="${#temporals.format(volunteer.acceptationDate,'dd/MM/yyyy')}"></td>
+        <td th:text="${#temporals.format(volunteer.finalDate,'dd/MM/yyyy')}"></td>
         <td th:text="${volunteer.accepted}"></td>
-        <td th:text="${volunteer.birthDate}"></td>
+        <td th:text="${#temporals.format(volunteer.birthDate,'dd/MM/yyyy')}"></td>
 
         <td><a class="btn btn-primary" th:href="@{/volunteer/update/{userV}(userV=${volunteer.userV})}" role="button">Edit</a>
         </td>
