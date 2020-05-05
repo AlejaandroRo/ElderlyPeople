@@ -2,6 +2,8 @@ package es.uji.ei1027.elderly.controller;
 
 import javax.servlet.http.HttpSession;
 
+import es.uji.ei1027.elderly.dao.ElderlyDao;
+import es.uji.ei1027.elderly.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,7 +67,10 @@ public class LoginController {
         String nextUrl = (String) session.getAttribute("nextUrl");
         session.removeAttribute("nextUrl");
         // Torna a la pàgina principal
-        return "redirect:" + nextUrl;
+        //elderlyDao = new ElderlyDao();
+        //elderlyDao.getElderlyByName("bob");
+        //Elderly elderly = elderlyDao.getElderlyByName("bob");
+        return "elderly/inicio";
     }
 
     @RequestMapping("/logout")

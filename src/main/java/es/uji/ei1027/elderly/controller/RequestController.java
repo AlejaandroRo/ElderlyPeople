@@ -4,14 +4,39 @@ import es.uji.ei1027.elderly.dao.ElderlyDao;
 import es.uji.ei1027.elderly.dao.RequestDao;
 import es.uji.ei1027.elderly.model.Elderly;
 import es.uji.ei1027.elderly.model.Request;
+import es.uji.ei1027.elderly.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.Arrays;
+import java.util.List;
+
+class RequestValidator implements Validator {
+    @Override
+    public boolean supports(Class<?> cls) {
+        return Request.class.isAssignableFrom(cls);
+    }
+    @Override
+    public void validate(Object obj, Errors errors) {
+        Request request = (Request)obj;
+        List<String> valors = Arrays.asList("Comida a domicilio", "Servicio sanitario", "Limpieza");
+        if(request.getServiceType().equals("")) {
+            errors.rejectValue("serviceType", "obligatorio", "Debes introducir un tipo de servicio");
+        }
+        if (request.getDniElderly().equals("")) {
+            errors.rejectValue("dniElderly", "obligatoria", "Debes introducir un dni");
+        }
+    }
+}
+
 
 @Controller
 @RequestMapping("/request")

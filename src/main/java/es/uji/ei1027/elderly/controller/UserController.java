@@ -28,14 +28,20 @@ public class UserController {
     public String listSocis(HttpSession session, Model model) {
         if (session.getAttribute("user") == null)
         {
+            UserDetails user = (UserDetails) session.getAttribute("user");
             ElderlyDao elderlyDao = new ElderlyDao();
-            Elderly elderly = elderlyDao.getElderlyByName("user");
-            elderly.toString();
+            Elderly elderly = elderlyDao.getElderlyByName(user.getUsername());
+
+
             model.addAttribute("user", new UserDetails());
             session.setAttribute("nextUrl", "request/list/" + elderly.getDni());
             return "login";
         }
         model.addAttribute("users", userDao.listAllUsers());
-        return "user/list";
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyDao elderlyDao = new ElderlyDao();
+        Elderly elderly = elderlyDao.getElderlyByName(user.getUsername());
+        return "request/list/" + elderly.getDni();
     }
 }
