@@ -81,8 +81,16 @@ public class RequestController {
         return "request/list";
     }
 }
-
+@Controller
+@RequestMapping("/request")
 class RequestValidator implements Validator {
+    private RequestDao requestDao;
+
+    @Autowired
+    public void setRequestDao(RequestDao requestDao) {
+        this.requestDao=requestDao;
+    }
+
     @Override
     public boolean supports(Class<?> cls) {
         return Request.class.isAssignableFrom(cls);
@@ -97,6 +105,10 @@ class RequestValidator implements Validator {
         if (request.getDniElderly().equals("")) {
             errors.rejectValue("dniElderly", "obligatorio", "Debe que introducir su DNI");
         }
+//        Request requestRepetida = requestDao.getRequestByType(request.getServiceType());
+//        if (requestRepetida != null) {
+//            errors.rejectValue("serviceType1", "obligatorio", "No puede volvler a contratar un servicio que ya tiene contradado");
+//        }
     }
 }
 

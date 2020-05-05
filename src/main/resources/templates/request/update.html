@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Elderly</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-
+<h2>Edit Elderly</h2>
+<form action="#" th:action="@{/request/update}"
+      th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td><label>Number</label></td>
+            <td><input type="number" th:field="*{number}" readonly/></td>
+        </tr>
+        <tr>
+            <td><label>Service Type</label></td>
+            <td><select class="form_control" type="text" th:field="*{serviceType}" readonly/>
+                <option value="No seleccionado">Selecciona el servicio</option>
+                <option value="Comida a domicilio">Comida a domicilio</option>
+                <option value="Servicio sanitario">Servicio sanitario</option>
+                <option value="Limpieza">Limpieza</option></td>
+            <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}"></td>
+        </tr>
+        <tr>
+            <td><label>Comments</label></td>
+            <td><input type="text" th:field="*{comments}"/></td>
+        </tr>
+        <tr>
+            <td><label>End Date</label></td>
+            <td><input type="date" th:field="*{endDate}"/></td>
+        </tr>
+        <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dniElderly}" readonly/></td>
+            <td th:if="${#fields.hasErrors('dniElderly')}" th:errors="*{dniElderly}"></td>
+        </tr>
+        <tr>
+            <td><label>Number contract</label></td>
+            <td><input type="number" th:field="*{numberContract}" readonly/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Update Elderly" /></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>
