@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/request")
@@ -29,9 +28,11 @@ public class RequestController {
         this.requestDao=requestDao;
     }
 
-    @RequestMapping(value="/add")
-    public String addRequest(Model model) {
-        model.addAttribute("request", new Request());
+    @RequestMapping(value="/add/{dniElderly}")
+    public String addRequest(Model model, @PathVariable String dniElderly) {
+        Request request = new Request();
+        request.setDniElderly(dniElderly);
+        model.addAttribute("request", request);
         return "request/add";
     }
 
@@ -54,9 +55,7 @@ public class RequestController {
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("request") Request request,
-            BindingResult bindingResult) {
+    public String processUpdateSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "request/update";
         requestDao.updateRequest(request);
@@ -77,10 +76,30 @@ public class RequestController {
 
     @RequestMapping(value="/list/{dniElderly}", method = RequestMethod.GET)
     public String editRequest(Model model, @PathVariable String dniElderly) {
-        model.addAttribute("requests", requestDao.getRequestsByElderly(dniElderly));
+        List<Request> requestsByElderly = new ArrayList<Request>();
+        requestsByElderly = requestDao.getRequestsByElderly(dniElderly);
+
+        List<Request> aceptadas = new ArrayList<Request>();
+        List<Request> pendientes = new ArrayList<Request>();
+        List<Request> rechazadas = new ArrayList<Request>();
+
+        for (Request request: requestsByElderly) {
+            if (request.getState().equals("Aceptada"))
+                aceptadas.add(request);
+            else if (request.getState().equals("Pendiente"))
+                pendientes.add(request);
+            else rechazadas.add(request);
+        }
+
+        model.addAttribute("aceptadas", aceptadas);
+        model.addAttribute("pendientes", pendientes);
+        model.addAttribute("rechazadas", rechazadas);
+        model.addAttribute("dniElderly", dniElderly);
         return "request/list";
     }
 }
+
+
 @Controller
 @RequestMapping("/request")
 class RequestValidator implements Validator {
@@ -102,9 +121,9 @@ class RequestValidator implements Validator {
         if(request.getServiceType().equals("") || request.getServiceType().equals("No seleccionado")) {
             errors.rejectValue("serviceType", "obligatorio", "Debe elegir un tipo de servicio");
         }
-        if (request.getDniElderly().equals("")) {
-            errors.rejectValue("dniElderly", "obligatorio", "Debe que introducir su DNI");
-        }
+//        if (request.getDniElderly().equals("")) {
+//            errors.rejectValue("dniElderly", "obligatorio", "Debe que introducir su DNI");
+//        }
 //        Request requestRepetida = requestDao.getRequestByType(request.getServiceType());
 //        if (requestRepetida != null) {
 //            errors.rejectValue("serviceType1", "obligatorio", "No puede volvler a contratar un servicio que ya tiene contradado");

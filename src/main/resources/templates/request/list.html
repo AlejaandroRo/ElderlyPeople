@@ -14,10 +14,14 @@
 <h1>Contract list</h1>
 
 <div layout:fragment="content">
-    <table class="table table-striped">
+    <h1 style="color: #3fd053">Solicitudes aceptadas</h1>
+    <div th:if="${#lists.isEmpty(aceptadas)}">
+        <h4>No hay solicitudes aceptadas</h4>
+    </div>
+    <table th:unless="${#lists.isEmpty(aceptadas)}" class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Number</th>
+<!--            <th scope="col">Number</th>-->
             <th scope="col">Service Type</th>
             <th scope="col">Creation Date</th>
             <th scope="col">State</th>
@@ -25,15 +29,15 @@
             <th scope="col">Rejected Date</th>
             <th scope="col">Comments</th>
             <th scope="col">End Date</th>
-            <th scope="col">DNI Elderly</th>
-            <th scope="col">Number Contract</th>
+<!--            <th scope="col">DNI Elderly</th>-->
+<!--            <th scope="col">Number Contract</th>-->
 
 
         </tr>
         </thead>
         <tbody>
-        <tr  th:each="request: ${requests}">
-            <td th:text="${request.number}"></td>
+        <tr  th:each="request: ${aceptadas}">
+<!--            <td th:text="${request.number}"></td>-->
             <td th:text="${request.serviceType}"></td>
             <td th:text="${#temporals.format(request.creationDate,'dd/MM/yyyy')}"></td>
             <td th:text="${request.state}"></td>
@@ -41,8 +45,8 @@
             <td th:text="${#temporals.format(request.rejectedDate,'dd/MM/yyyy')}"></td>
             <td th:text="${request.comments}"></td>
             <td th:text="${#temporals.format(request.endDate,'dd/MM/yyyy')}"></td>
-            <td th:text="${request.dniElderly}"></td>
-            <td th:text="${request.numberContract}"></td>
+<!--            <td th:text="${request.dniElderly}"></td>-->
+<!--            <td th:text="${request.numberContract}"></td>-->
 
             <td><a class="btn btn-warning" th:href="@{/request/update/{number}(number=${request.number})} " role="button">Edita</a>
             <td><a class="btn btn-danger" th:href="@{/request/delete/{dniElderly}/{number}(dniElderly=${request.dniElderly}, number=${request.number})} " role="button">Esborra</a>
@@ -50,7 +54,87 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="../add" role="button">Add Request</a>
+    <h1 style="color:orange">Solicitudes Pendientes</h1>
+    <div th:if="${#lists.isEmpty(pendientes)}">
+        <h4>No hay solicitudes pendientes</h4>
+    </div>
+    <table th:unless="${#lists.isEmpty(pendientes)}" class="table table-striped">
+        <thead>
+        <tr>
+            <!--            <th scope="col">Number</th>-->
+            <th scope="col">Service Type</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">State</th>
+            <th scope="col">Approved Date</th>
+            <th scope="col">Rejected Date</th>
+            <th scope="col">Comments</th>
+            <th scope="col">End Date</th>
+            <!--            <th scope="col">DNI Elderly</th>-->
+            <!--            <th scope="col">Number Contract</th>-->
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="request: ${pendientes}">
+            <!--            <td th:text="${request.number}"></td>-->
+            <td th:text="${request.serviceType}"></td>
+            <td th:text="${#temporals.format(request.creationDate,'dd/MM/yyyy')}"></td>
+            <td th:text="${request.state}"></td>
+            <td th:text="${#temporals.format(request.approvedDate,'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(request.rejectedDate,'dd/MM/yyyy')}"></td>
+            <td th:text="${request.comments}"></td>
+            <td th:text="${#temporals.format(request.endDate,'dd/MM/yyyy')}"></td>
+            <!--            <td th:text="${request.dniElderly}"></td>-->
+            <!--            <td th:text="${request.numberContract}"></td>-->
+
+            <td><a class="btn btn-warning" th:href="@{/request/update/{number}(number=${request.number})} " role="button">Edita</a>
+            <td><a class="btn btn-danger" th:href="@{/request/delete/{dniElderly}/{number}(dniElderly=${request.dniElderly}, number=${request.number})} " role="button">Esborra</a>
+        </tr>
+        </tbody>
+    </table>
+
+    <h1 style="color:red">Solicitudes Rechazadas</h1>
+    <div th:if="${#lists.isEmpty(rechazadas)}">
+        <h4>No hay solicitudes rechazadas</h4>
+    </div>
+    <table th:unless="${#lists.isEmpty(rechazadas)}" class="table table-striped">
+        <thead>
+        <tr>
+            <!--            <th scope="col">Number</th>-->
+            <th scope="col">Service Type</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">State</th>
+            <th scope="col">Approved Date</th>
+            <th scope="col">Rejected Date</th>
+            <th scope="col">Comments</th>
+            <th scope="col">End Date</th>
+            <!--            <th scope="col">DNI Elderly</th>-->
+            <!--            <th scope="col">Number Contract</th>-->
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="request: ${rechazadas}">
+            <!--            <td th:text="${request.number}"></td>-->
+            <td th:text="${request.serviceType}"></td>
+            <td th:text="${#temporals.format(request.creationDate,'dd/MM/yyyy')}"></td>
+            <td th:text="${request.state}"></td>
+            <td th:text="${#temporals.format(request.approvedDate,'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(request.rejectedDate,'dd/MM/yyyy')}"></td>
+            <td th:text="${request.comments}"></td>
+            <td th:text="${#temporals.format(request.endDate,'dd/MM/yyyy')}"></td>
+            <!--            <td th:text="${request.dniElderly}"></td>-->
+            <!--            <td th:text="${request.numberContract}"></td>-->
+
+            <td><a class="btn btn-warning" th:href="@{/request/update/{number}(number=${request.number})} " role="button">Edita</a>
+            <td><a class="btn btn-danger" th:href="@{/request/delete/{dniElderly}/{number}(dniElderly=${request.dniElderly}, number=${request.number})} " role="button">Esborra</a>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" th:href="@{../add/{dniElderly}(dniElderly=${dniElderly})}" role="button">Add Request</a>
 </div>
 </body>
 </html>

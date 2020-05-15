@@ -21,9 +21,8 @@ public class RequestDao {
 
     //Add request
     public void addRequest(Request request) {
-        jdbcTemplate.update("INSERT INTO request VALUES(?, ?, current_date, 'Pendiente', ?, ?, ?, ?, ?, ?)", request.getNumber(), request.getServiceType(),
-                request.getApprovedDate(), request.getRejectedDate(), request.getComments(), request.getEndDate(), request.getDniElderly(),
-                request.getNumberContract());
+        jdbcTemplate.update("INSERT INTO request VALUES(?, ?, current_date, 'Pendiente', ?, ?, ?, ?, ?, 13)", request.getNumber(), request.getServiceType(),
+                request.getApprovedDate(), request.getRejectedDate(), request.getComments(), request.getEndDate(), request.getDniElderly());
     }
     //Update
     public void updateRequest(Request request) {
@@ -67,6 +66,17 @@ public class RequestDao {
         try {
             return jdbcTemplate.query("SELECT * FROM request", new RequestRowMapper());
         } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
+
+    public List<Request> getRequestByState(String state) {
+        try {
+            return this.jdbcTemplate.query(
+                    "SELECT * FROM request WHERE state=?",
+                    new Object[] {state}, new RequestRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
         }
     }
