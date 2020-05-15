@@ -15,13 +15,12 @@
 <div layout:fragment="content">
 <form action="#" th:action="@{/request/add}"
       th:object="${request}" method="post">
-    <table>
+    <tr>
         <tr>
-            <td><label>DNI</label></td>
+            <td><label>TU DNI</label></td>
             <td><input type="text" th:field="*{dniElderly}" readonly></td>
             <td th:if="${#fields.hasErrors('dniElderly')}" th:errors="*{dniElderly}"></td>
         </tr>
-        <tr></tr>
         <tr>
             <td><label>Number</label></td>
             <td><input type="number" th:field="*{number}" required /></td>
@@ -42,6 +41,11 @@
         <tr>
             <td><label>End Date</label></td>
             <td><input type="date" th:field="*{endDate}"/></td>
+        </tr>
+
+        <tr>
+            <td><label>Number contract</label></td>
+            <td><input type="number" th:field="*{numberContract}" /></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Add request" /></td>
