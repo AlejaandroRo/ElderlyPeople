@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>EI1027</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<!--    <link rel="stylesheet" type="text/css" href="/css/styleIndex.css"-->
+<!--          th:href="@{/css/styleIndex.css}"/>-->
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>CAS MANAGER</h1>
+    <h4>Responsable de los contratos con las empresas</h4>
+        <div class="container">
+            <table>
+                <tr>
+                    <td><a class="btn btn-primary" href="../contract/list">Establecer Contrato</a></td>
+                    <td><a class="btn btn-primary" href="../company/list">Lista de empresas</a></td>
+                </tr>
+            </table>
+        </div>
+</div>
+</body>
+</html>

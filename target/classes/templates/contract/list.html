@@ -11,9 +11,9 @@
           th:href="@{/css/elderly.css}"/>
 </head>
 <body>
-<h1>Contract list</h1>
 
 <div layout:fragment="content">
+    <h1>Contract list</h1>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -28,7 +28,7 @@
         <th scope="col">CIF Company</th>
 
     </tr>
-    </thead>Beginning
+    </thead>
     <tbody>
     <tr  th:each="contract: ${contracts}">
         <td th:text="${contract.number}"></td>
