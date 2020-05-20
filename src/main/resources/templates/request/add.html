@@ -15,16 +15,16 @@
 <div layout:fragment="content">
 <form action="#" th:action="@{/request/add}"
       th:object="${request}" method="post">
-    <tr>
+    <table>
         <tr>
             <td><label>TU DNI</label></td>
             <td><input type="text" th:field="*{dniElderly}" readonly></td>
             <td th:if="${#fields.hasErrors('dniElderly')}" th:errors="*{dniElderly}"></td>
         </tr>
-        <tr>
+        <!--<tr>
             <td><label>Number</label></td>
             <td><input type="number" th:field="*{number}" required /></td>
-        </tr>
+        </tr>-->
         <tr>
             <td><label>Service Type</label></td>
             <td><select class="form_control" type="text" th:field="*{serviceType}" required />

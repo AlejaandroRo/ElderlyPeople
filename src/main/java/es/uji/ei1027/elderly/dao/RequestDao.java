@@ -21,7 +21,10 @@ public class RequestDao {
 
     //Add request
     public void addRequest(Request request) {
-        jdbcTemplate.update("INSERT INTO request VALUES(?, ?, current_date, 'Pendiente', ?, ?, ?, ?, ?, ?)", request.getNumber(), request.getServiceType(),
+        Request ultimaRequest = jdbcTemplate.queryForObject("SELECT * FROM request WHERE number = (SELECT MAX(number) FROM request)", new RequestRowMapper());
+        int proximoNumeroDeRequest = ultimaRequest.getNumber() + 1;
+
+        jdbcTemplate.update("INSERT INTO request VALUES(?, ?, current_date, 'Pendiente', ?, ?, ?, ?, ?, ?)", proximoNumeroDeRequest, request.getServiceType(),
                 request.getApprovedDate(), request.getRejectedDate(), request.getComments(), request.getEndDate(), request.getDniElderly(),
                 request.getNumberContract());
     }
