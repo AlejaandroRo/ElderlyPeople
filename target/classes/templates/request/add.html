@@ -11,47 +11,62 @@
           th:href="@{/css/elderly.css}"/>
 </head>
 <body>
-<h2>New request</h2>
 <div layout:fragment="content">
-<form action="#" th:action="@{/request/add}"
-      th:object="${request}" method="post">
-    <table>
-        <tr>
-            <td><label>TU DNI</label></td>
-            <td><input type="text" th:field="*{dniElderly}" readonly></td>
-            <td th:if="${#fields.hasErrors('dniElderly')}" th:errors="*{dniElderly}"></td>
-        </tr>
-        <!--<tr>
-            <td><label>Number</label></td>
-            <td><input type="number" th:field="*{number}" required /></td>
-        </tr>-->
-        <tr>
-            <td><label>Service Type</label></td>
-            <td><select class="form_control" type="text" th:field="*{serviceType}" required />
-                <option value="No seleccionado">Selecciona el servicio</option>
-                <option value="Comida a domicilio">Comida a domicilio</option>
-                <option value="Servicio sanitario">Servicio sanitario</option>
-                <option value="Limpieza">Limpieza</option></td>
-            <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}"></td>
-        </tr>
-        <tr>
-            <td><label>Comments</label></td>
-            <td><input type="text" th:field="*{comments}"/></td>
-        </tr>
-        <tr>
-            <td><label>End Date</label></td>
-            <td><input type="date" th:field="*{endDate}"/></td>
-        </tr>
+    <h2>New request</h2>
+    <form class="form-horizontal" action="#" th:action="@{/request/add}"
+          th:object="${request}" method="post">
 
-        <tr>
-            <td><label>Number contract</label></td>
-            <td><input type="number" th:field="*{numberContract}" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Add request" /></td>
-        </tr>
-    </table>
-</form>
+        <table>
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="dniElderly">TU DNI</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="dniElderly" th:field="*{dniElderly}" readonly>
+                </div>
+                <td th:if="${#fields.hasErrors('dniElderly')}" th:errors="*{dniElderly}"></td>
+            </div>
+            <!--<tr>
+                <td><label>Number</label></td>
+                <td><input type="number" th:field="*{number}" required /></td>
+            </tr>-->
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="serviceType">Service Type</label>
+                <div class="col-sm-4">
+                    <select class="form_control" type="text" id="serviceType" th:field="*{serviceType}" required>
+                        <option value="No seleccionado">Selecciona el servicio</option>
+                        <option value="Comida a domicilio">Comida a domicilio</option>
+                        <option value="Servicio sanitario">Servicio sanitario</option>
+                        <option value="Limpieza">Limpieza</option>
+                    </select>
+                </div>
+                <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}"></td>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="comments">Comments</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" id="comments" th:field="*{comments}"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="endDate">End Date</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="date" id="endDate" th:field="*{endDate}"/>
+                </div>
+            </div>
+
+            <!--<tr>
+                <td><label>Number contract</label></td>
+                <td><input type="number" th:field="*{numberContract}" /></td>
+            </tr>-->
+            <div class="form-group row">
+                <div class="col-sm-offset-2 col-sm-4">
+                    <button type="submit" class="btn btn-success">Add request</button>
+                </div>
+            </div>
+        </table>
+    </form>
 </div>
 </body>
 </html>
