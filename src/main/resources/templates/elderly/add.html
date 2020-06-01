@@ -11,8 +11,9 @@
           th:href="@{/css/elderly.css}"/>
 </head>
 <body>
-<h2>New elderly</h2>
+
 <div layout:fragment="content">
+    <h2>New elderly</h2>
 <form action="#" th:action="@{/elderly/add}"
       th:object="${elderly}" method="post">
     <table>

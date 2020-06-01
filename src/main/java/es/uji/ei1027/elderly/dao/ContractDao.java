@@ -22,7 +22,7 @@ public class ContractDao {
 
     //AddContract
     public void addContract(Contract contract) {
-        jdbcTemplate.update("INSERT INTO company VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", contract.getNumber(), contract.getDateBeginning(),
+        jdbcTemplate.update("INSERT INTO contract VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", contract.getNumber(), contract.getDateBeginning(),
                 contract.getDateEnding(), contract.getDescription(), contract.getServiceType(), contract.getQuantityServices(),
                 contract.getUnitsOfMeasure(), contract.getPriceUnit(), contract.getCifCompany());
     }
