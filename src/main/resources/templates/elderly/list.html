@@ -47,9 +47,9 @@
             <td th:text="${elderly.address}"></td>
             <td th:text="${elderly.userCAS}"></td>
 
-            <td><a class="btn btn-primary" th:href="@{/request/list/{dniElderly}(dniElderly=${elderly.dni})} " role="button">Ver Request</a>
-            <td><a class="btn btn-warning" th:href="@{/elderly/update/{dni}(dni=${elderly.dni})} " role="button">Edita</a>
-            <td><a class="btn btn-danger" th:href="@{/elderly/delete/{dni}(dni=${elderly.dni})} " role="button">Esborra</a>
+            <td><a class="btn btn-primary" th:href="@{/request/list/{dniElderly}(dniElderly=${elderly.dni})} " role="button">See Request</a>
+            <td><a class="btn btn-warning" th:href="@{/elderly/update/{dni}(dni=${elderly.dni})} " role="button">Edit</a>
+            <td><a class="btn btn-danger" th:href="@{/elderly/delete/{dni}(dni=${elderly.dni})} " role="button">Delete</a>
 
         </tr>
         </tbody>

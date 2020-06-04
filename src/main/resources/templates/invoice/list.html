@@ -32,8 +32,8 @@
         <td th:text="${invoice.concept}"></td>
         <td th:text="${invoice.dniElderly}"></td>
 
-        <td><a class="btn btn-warning" th:href="@{/invoice/update/{number}(number=${invoice.number})} " role="button">Edita</a>
-        <td><a class="btn btn-danger" th:href="@{/invoice/delete/{number}(number=${invoice.number})} " role="button">Esborra</a>
+        <td><a class="btn btn-warning" th:href="@{/invoice/update/{number}(number=${invoice.number})} " role="button">Edit invoice</a>
+        <td><a class="btn btn-danger" th:href="@{/invoice/delete/{number}(number=${invoice.number})} " role="button">Delete</a>
     </tr>
     </tbody>
 </table>

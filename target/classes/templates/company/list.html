@@ -37,8 +37,8 @@
         <td th:text="${company.contactPersonEmail}"></td>
         <td th:text="${company.serviceType}"></td>
 
-        <td><a class="btn btn-warning" th:href="@{/company/update/{cif}(cif=${company.cif})} " role="button">Edita</a>
-        <td><a class="btn btn-danger" th:href="@{/company/delete/{cif}(cif=${company.cif})} " role="button">Esborra</a>
+        <td><a class="btn btn-warning" th:href="@{/company/update/{cif}(cif=${company.cif})} " role="button">Edit company</a>
+        <td><a class="btn btn-danger" th:href="@{/company/delete/{cif}(cif=${company.cif})} " role="button">Delete</a>
     </tr>
     </tbody>
 </table>

@@ -28,9 +28,9 @@
         <td th:text="${worker.userCAS}"></td>
         <td th:text="${worker.phoneNumber}"></td>
         <td th:text="${worker.email}"></td>
-        <td><a class="btn btn-primary" th:href="@{/socialWorker/update/{userCAS}(userCAS=${worker.userCAS})}" role="button">Editar</a>
+        <td><a class="btn btn-primary" th:href="@{/socialWorker/update/{userCAS}(userCAS=${worker.userCAS})}" role="button">Edit</a>
         </td>
-        <td><a class="btn btn-danger" th:href="@{/socialWorker/delete/{userCAS}(userCAS=${worker.userCAS})}" role="button">Borrar</a>
+        <td><a class="btn btn-danger" th:href="@{/socialWorker/delete/{userCAS}(userCAS=${worker.userCAS})}" role="button">Delete</a>
         </td>
     </tr>
     </tbody>
