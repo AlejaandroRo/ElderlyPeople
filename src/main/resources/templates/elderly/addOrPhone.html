@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/mainPage.css"
-          th:href="@{/css/mainPage.css}"/>
-    <title>Inicio Elderly</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
+    <title>Solicitud Elderly</title>
 </head>
 <body>
-    <a class="btn btn1" href="/request/add/12344568F">Añadir solicitud</a>
-    <a class="btn btn1" href="/elderly/phone">Por telefono mejor</a>
+<div class="principal" layout:fragment="content">
+
+    <div class="form-group row">
+    <h3>Elige de que forma desea hacer la solicitud de un servicio</h3>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <a class="btn btn-success" href="/request/add/12344568F">Solicitud manual</a>
+        </div>
+        <div class="col-sm-2">
+            <a class="btn btn-success" href="/elderly/phone">Por telefono mejor</a>
+        </div>
+</div>
 </body>
 </html>

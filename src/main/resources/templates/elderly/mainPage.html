@@ -16,10 +16,23 @@
         <!--<li><a class="btn btn-primary" th:href="@{/request/list/{dniElderly}(dniElderly=${user.dni})}" role="button">Ver Request</a></li>-->
     <!--</ul>-->
 <!--</form>-->
-    <div layout:fragment="content">
-        <a class="btn btn1" href="/request/list/12344568F">Ver solicitudes</a>
-        <a class="btn btn1" href="/elderly/addOrPhone">Añadir solicitud</a>
-     <a class="btn btn1" href="/elderly/mainPage">Editar informacion</a>
+    <div style="center" layout:fragment="content">
+
+        <div class="form-group row">
+        </div>
+
+        <div class="form-group row">
+        <a class="btn btn-success" href="/request/list/12344568F">Ver solicitudes</a>
+        </div>
+
+        <div class="form-group row">
+        <a class="btn btn-success" href="/elderly/addOrPhone">Añadir solicitud</a>
+        </div>
+
+        <div class="form-group row">
+        <a class="btn btn-success" href="/elderly/mainPage">Editar informacion</a>
+        </div>
+
     </div>
 </body>
 </html>
