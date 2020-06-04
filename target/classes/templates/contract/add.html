@@ -19,7 +19,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2" for="number">Number contract:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="number" th:field="*{number}" />
+                <input type="text" class="form-control" id="number" th:field="*{number}" required />
             </div>
             <td th:if="${#fields.hasErrors('number')}" th:errors="*{number}" class="error"/>
         </div>
@@ -27,7 +27,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2" for="dateBeginning">Date Beginning:</label>
             <div class="col-sm-4">
-                <input type="date" class="form-control" id="dateBeginning" th:field="*{dateBeginning}" />
+                <input type="date" class="form-control" id="dateBeginning" th:field="*{dateBeginning}" required/>
             </div>
             <td th:if="${#fields.hasErrors('dateBeginning')}" th:errors="*{dateBeginning}" class="error"/>
         </div>
@@ -35,7 +35,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2" for="dateEnding">Date Ending:</label>
             <div class="col-sm-4">
-                <input type="date" class="form-control" id="dateEnding" th:field="*{dateEnding}" />
+                <input type="date" class="form-control" id="dateEnding" th:field="*{dateEnding}" required/>
             </div>
         </div>
 
@@ -49,7 +49,12 @@
         <div class="form-group row">
             <label class="control-label col-sm-2" for="serviceType">Service Type:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="serviceType" th:field="*{serviceType}"/>
+                <select class="form_control" type="text" id="serviceType" th:field="*{serviceType}" required>
+                    <option value="No seleccionado">Selecciona el servicio</option>
+                    <option value="Comida a domicilio">Comida a domicilio</option>
+                    <option value="Servicio sanitario">Servicio sanitario</option>
+                    <option value="Limpieza">Limpieza</option>
+                </select>
             </div>
         </div>
 
@@ -77,7 +82,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2" for="cifCompany">CIF Company:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}"/>
+                <input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}" required />
             </div>
         </div>
 

@@ -68,11 +68,15 @@ public class ElderlyController {
     public String getPage(){
         return "elderly/mainPage";
     }
-
+    @RequestMapping("/aboutUs")
+    public String aboutUs() {
+        return "us/aboutUs";
+    }
     @RequestMapping("/addOrPhone")
     public String getAddOrPhone(){
         return "elderly/addOrPhone";
     }
+
     @RequestMapping("/phone")
     public String getPhone(){
         return "elderly/phone";

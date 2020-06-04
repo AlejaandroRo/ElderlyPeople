@@ -5,6 +5,8 @@ import es.uji.ei1027.elderly.dao.ContractDao;
 import es.uji.ei1027.elderly.model.Company;
 import es.uji.ei1027.elderly.model.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,6 +39,13 @@ public class ContractController {
 
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
+        try {
+            contractDao.addContract(contract);
+        } catch (DuplicateKeyException e) {
+            throw new ElderlyException("Number " + contract.getNumber() + " already exists, try again", "CPduplicada");
+        } catch (DataIntegrityViolationException e) {
+            throw new ElderlyException("The company must be created before creating the contract", "NotFound");
+        }
         if(bindingResult.hasErrors())
             return "contract/add";
         contractDao.addContract(contract);
@@ -68,6 +77,8 @@ public class ContractController {
         model.addAttribute("contracts", contractDao.getContracts());
         return "contract/list";
     }
+
+
 }
 
 @Controller
@@ -91,12 +102,8 @@ class ContractValidator implements Validator {
         if(contract.getServiceType().equals("") || contract.getServiceType().equals("No seleccionado")) {
             errors.rejectValue("serviceType", "obligatorio", "Debe elegir un tipo de servicio");
         }
-//        if (request.getDniElderly().equals("")) {
-//            errors.rejectValue("dniElderly", "obligatorio", "Debe que introducir su DNI");
-//        }
-//        Request requestRepetida = requestDao.getRequestByType(request.getServiceType());
-//        if (requestRepetida != null) {
-//            errors.rejectValue("serviceType1", "obligatorio", "No puede volvler a contratar un servicio que ya tiene contradado");
-//        }
+        if (contract.getCifCompany().equals("null")) {
+            errors.rejectValue("cifCompany", "obligatorio", "Debe de estar registrada");
+        }
     }
 }
