@@ -124,9 +124,17 @@ class RequestValidator implements Validator {
 //        if (request.getDniElderly().equals("")) {
 //            errors.rejectValue("dniElderly", "obligatorio", "Debe que introducir su DNI");
 //        }
-//        Request requestRepetida = requestDao.getRequestByType(request.getServiceType());
-//        if (requestRepetida != null) {
-//            errors.rejectValue("serviceType1", "obligatorio", "No puede volvler a contratar un servicio que ya tiene contradado");
+//        List<Request> ra= requestDao.getRequests();
+//       Request r = requestDao.getRequestByType("Comida a domicilio");
+//        List<Request> requestsRepetidos = requestDao.getRequestsByElderly(request.getDniElderly());
+//        for (int i=0; i<requestsRepetidos.size(); i++) {
+//            if (requestsRepetidos.get(i).getServiceType().equals("Comida a domicilio")) {
+        if (request.getServiceType().equals("Comida a domicilio")) {
+            errors.rejectValue("serviceType", "obligatorio", "No puede volver a contratar un servicio que ya tiene contradado");
+             //   }
+           // }
+        }
+        //if (requestRepetida != null &&
 //        }
     }
 }

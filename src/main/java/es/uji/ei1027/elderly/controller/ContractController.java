@@ -8,10 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/contract")
@@ -62,5 +67,36 @@ public class ContractController {
     public String listContracts(Model model) {
         model.addAttribute("contracts", contractDao.getContracts());
         return "contract/list";
+    }
+}
+
+@Controller
+@RequestMapping("/request")
+class ContractValidator implements Validator {
+    private ContractDao contractDao;
+
+    @Autowired
+    public void setContractDao(ContractDao contractDao) {
+        this.contractDao=contractDao;
+    }
+
+    @Override
+    public boolean supports(Class<?> cls) {
+        return Contract.class.isAssignableFrom(cls);
+    }
+    @Override
+    public void validate(Object obj, Errors errors) {
+        Contract contract = (Contract) obj;
+        List<String> valors = Arrays.asList("Comida a domicilio", "Servicio sanitario", "Limpieza");
+        if(contract.getServiceType().equals("") || contract.getServiceType().equals("No seleccionado")) {
+            errors.rejectValue("serviceType", "obligatorio", "Debe elegir un tipo de servicio");
+        }
+//        if (request.getDniElderly().equals("")) {
+//            errors.rejectValue("dniElderly", "obligatorio", "Debe que introducir su DNI");
+//        }
+//        Request requestRepetida = requestDao.getRequestByType(request.getServiceType());
+//        if (requestRepetida != null) {
+//            errors.rejectValue("serviceType1", "obligatorio", "No puede volvler a contratar un servicio que ya tiene contradado");
+//        }
     }
 }

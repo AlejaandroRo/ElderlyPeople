@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}"><head>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/mainPage.css"
+          th:href="@{/css/mainPage.css}"/>
+    <title>Inicio Elderly</title>
+</head>
+<body>
+
+<!--<form th:object="${user}">-->
+    <!--<ul>-->
+        <!--<li><a class="btn btn-primary" th:href="@{/request/list/{dniElderly}(dniElderly=${user.dni})}" role="button">Ver Request</a></li>-->
+    <!--</ul>-->
+<!--</form>-->
+    <div layout:fragment="content">
+        <a class="btn btn1" href="/request/list/12344568F">Ver solicitudes</a>
+        <a class="btn btn1" href="/elderly/addOrPhone">Añadir solicitud</a>
+     <a class="btn btn1" href="/elderly/mainPage">Editar informacion</a>
+    </div>
+</body>
+</html>

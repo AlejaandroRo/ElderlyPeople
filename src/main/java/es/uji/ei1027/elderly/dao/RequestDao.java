@@ -61,7 +61,11 @@ public class RequestDao {
 
     //Obtener request by tipo
     public Request getRequestByType(String serviceType) {
-        return jdbcTemplate.queryForObject("SELECT * FROM request WHERE serviceType = ?", new RequestRowMapper(), serviceType);
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM request WHERE serviceType = ?", new RequestRowMapper(), serviceType);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     //List

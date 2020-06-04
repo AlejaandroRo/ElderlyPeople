@@ -64,4 +64,17 @@ public class ElderlyController {
         model.addAttribute("elderlies", elderlyDao.getElderlies());
         return "elderly/list";
     }
+    @RequestMapping("/mainPage")
+    public String getPage(){
+        return "elderly/mainPage";
+    }
+
+    @RequestMapping("/addOrPhone")
+    public String getAddOrPhone(){
+        return "elderly/addOrPhone";
+    }
+    @RequestMapping("/phone")
+    public String getPhone(){
+        return "elderly/phone";
+    }
 }
