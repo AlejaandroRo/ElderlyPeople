@@ -3,34 +3,53 @@ package es.uji.ei1027.elderly.dao;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import es.uji.ei1027.elderly.model.CasManager;
+import es.uji.ei1027.elderly.model.Elderly;
+import es.uji.ei1027.elderly.model.Volunteer;
 import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import es.uji.ei1027.elderly.model.UserDetails;
 
+import javax.sql.DataSource;
+
 @Repository
 public class FakeUserProvider implements UserDao {
-    final Map<String, UserDetails> knownUsers = new HashMap<String, UserDetails>();
+    private JdbcTemplate jdbcTemplate;
+    BasicPasswordEncryptor passwordEncryptor;
 
     public FakeUserProvider() {
-        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        UserDetails userAlice = new UserDetails();
-        userAlice.setUsername("alice");
-        userAlice.setPassword(passwordEncryptor.encryptPassword("alice"));
-        knownUsers.put("alice", userAlice);
+        this.passwordEncryptor = new BasicPasswordEncryptor();
+    }
 
-        UserDetails userBob = new UserDetails();
-        userBob.setUsername("bob");
-        userBob.setPassword(passwordEncryptor.encryptPassword("bob"));
-        knownUsers.put("bob", userBob);
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username, String password) {
-        UserDetails user = knownUsers.get(username.trim());
-        if (user == null)
-            return null; // Usuari no trobat
+        UserDetails user = new UserDetails();
+        try {
+            Elderly elderly = jdbcTemplate.queryForObject("SELECT * FROM elderly WHERE username = ?", new ElderlyRowMapper(), username);
+            user.setTypeOfUser("elderly");
+            user.setUsername(elderly.getUsername());
+            user.setPassword(passwordEncryptor.encryptPassword((elderly.getUserPwd())));
+        } catch (EmptyResultDataAccessException e){
+            try {
+                CasManager casManager = jdbcTemplate.queryForObject("SELECT * FROM casManager WHERE username = ?", new CasManagerRowMapper(), username);
+                user.setTypeOfUser("casManager");
+                user.setUsername(casManager.getUsername());
+                user.setPassword(passwordEncryptor.encryptPassword(casManager.getPwd()));
+            } catch (EmptyResultDataAccessException ex) {
+                return null;
+            }
+        }
+
         // Contrasenya
-        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         if (passwordEncryptor.checkPassword(password, user.getPassword())) {
             // Es deuria esborrar de manera segura el camp password abans de tornar-lo
             return user;
@@ -38,10 +57,5 @@ public class FakeUserProvider implements UserDao {
         else {
             return null; // bad login!
         }
-    }
-
-    @Override
-    public Collection<UserDetails> listAllUsers() {
-        return knownUsers.values();
     }
 }

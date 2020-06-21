@@ -21,6 +21,7 @@ public class Elderly {
     private String diseases;
     private String address;
     private String userCAS;
+    private String username;
 
     public Elderly() {
     }
@@ -129,6 +130,14 @@ public class Elderly {
         this.userCAS = userCAS;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String toString() {
         return "Elderly{" +
@@ -145,6 +154,7 @@ public class Elderly {
                 ", diseases='" + diseases + '\'' +
                 ", address='" + address + '\'' +
                 ", userCAS='" + userCAS + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

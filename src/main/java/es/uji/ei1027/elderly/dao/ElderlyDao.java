@@ -48,6 +48,16 @@ public class ElderlyDao {
             return null;
         }
     }
+
+    public Elderly getElderlyByUserName(String userName) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM elderly WHERE username = ?", new ElderlyRowMapper(), userName);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
     //Obtener elderly por el dni
     public Elderly getElderlyByDni(String dni) {
         try {

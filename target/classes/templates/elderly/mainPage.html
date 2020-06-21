@@ -16,8 +16,9 @@
         <!--<li><a class="btn btn-primary" th:href="@{/request/list/{dniElderly}(dniElderly=${user.dni})}" role="button">Ver Request</a></li>-->
     <!--</ul>-->
 <!--</form>-->
+<form th:object="${user}">
     <div style="center" layout:fragment="content">
-        <h2>Welcome Silvey Riera!</h2>
+        <h2>Welcome</h2> <h2 th:text="${user.name}"></h2>
 
         <font size="4">
 
@@ -25,16 +26,17 @@
         </div>
 
             <h3><u>See your request</u></h3>
-            <a class="btn btn-success" href="/request/list/12344568F">See request</a>
+            <a class="btn btn-success" th:href="@{/request/list/{dniElderly}(dniElderly=${user.dni})}" role="button">See request</a>
             <div class="form-group row">
             </div>
             <h3><u>Request new service</u></h3>
-            <a class="btn btn-success" href="/elderly/addOrPhone">New request</a>
+            <a class="btn btn-success" th:href="@{/elderly/addOrPhone/{dniElderly}(dniElderly=${user.dni})}">New request</a>
             <div class="form-group row">
             </div>
             <h3><u>Edit your personal information</u></h3>
-            <a class="btn btn-success" href="/elderly/update/12344568F">Edit information</a>
+            <a class="btn btn-success" th:href="@{/elderly/update/{dniElderly}(dniElderly=${user.dni})}" role="button">Edit information</a>
         </font>
     </div>
+</form>
 </body>
 </html>

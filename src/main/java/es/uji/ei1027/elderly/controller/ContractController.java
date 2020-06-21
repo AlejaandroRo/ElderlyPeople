@@ -39,6 +39,8 @@ public class ContractController {
 
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
+        if(bindingResult.hasErrors())
+            return "contract/add";
         try {
             contractDao.addContract(contract);
         } catch (DuplicateKeyException e) {
@@ -46,9 +48,6 @@ public class ContractController {
         } catch (DataIntegrityViolationException e) {
             throw new ElderlyException("The company must be created before creating the contract", "NotFound");
         }
-        if(bindingResult.hasErrors())
-            return "contract/add";
-        contractDao.addContract(contract);
         return "redirect:list";
     }
 

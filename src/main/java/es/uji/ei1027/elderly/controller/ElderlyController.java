@@ -2,6 +2,7 @@ package es.uji.ei1027.elderly.controller;
 
 import es.uji.ei1027.elderly.dao.ElderlyDao;
 import es.uji.ei1027.elderly.model.Elderly;
+import es.uji.ei1027.elderly.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/elderly")
@@ -64,16 +67,14 @@ public class ElderlyController {
         model.addAttribute("elderlies", elderlyDao.getElderlies());
         return "elderly/list";
     }
-    @RequestMapping("/mainPage")
-    public String getPage(){
-        return "elderly/mainPage";
-    }
+
     @RequestMapping("/aboutUs")
     public String aboutUs() {
         return "us/aboutUs";
     }
-    @RequestMapping("/addOrPhone")
-    public String getAddOrPhone(){
+    @RequestMapping("/addOrPhone/{dni}")
+    public String getAddOrPhone(Model model, @PathVariable String dni){
+        model.addAttribute("dni", dni);
         return "elderly/addOrPhone";
     }
 
@@ -81,4 +82,18 @@ public class ElderlyController {
     public String getPhone(){
         return "elderly/phone";
     }
+
+    @RequestMapping("/mainPage")
+    public String mainPage(HttpSession session, Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        if (user == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        Elderly elderly = elderlyDao.getElderlyByUserName(user.getUsername());
+        model.addAttribute("user", elderly);
+        return "elderly/mainPage";
+    }
+
 }

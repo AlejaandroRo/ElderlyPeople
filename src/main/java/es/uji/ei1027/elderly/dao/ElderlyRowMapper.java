@@ -23,6 +23,7 @@ public final class ElderlyRowMapper implements RowMapper<Elderly> {
         elderly.setDiseases(rs.getString("diseases"));
         elderly.setAddress(rs.getString("address"));
         elderly.setUserCAS(rs.getString("userCAS"));
+        elderly.setUsername(rs.getString("username"));
         return elderly;
     }
 }

@@ -16,9 +16,10 @@
     <h3>Choose how you want to request a service</h3>
     </div>
 
+    <form th:object="${dni}">
     <div class="form-group row">
         <div class="col-sm-2">
-            <a class="btn btn-success" href="/request/add/12344568F">Telematic request</a>
+            <a class="btn btn-success" th:href="@{/request/add/{dni}(dni=${dni})}">Telematic request</a>
         </div>
         <div class="col-sm-2">
             <a class="btn btn-success" href="/elderly/phone">Phone call</a>

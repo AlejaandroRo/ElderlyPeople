@@ -64,12 +64,10 @@ public class LoginController {
         }
         // Autenticats correctament.
         // Guardem les dades de l'usuari autenticat a la sessió
-        Elderly elderly = elderlyDao.getElderlyByName(user.getUsername());
-        session.setAttribute("user", elderly);
-        String nextUrl = (String) session.getAttribute("nextUrl");
-        session.removeAttribute("nextUrl");
-        // Torna a la pàgina principal
-        return "redirect:" + "inicios/inicioElderly";
+
+        session.setAttribute("user", user);
+
+        return "redirect:" + user.getTypeOfUser() + "/mainPage";
     }
 
     @RequestMapping("/logout")

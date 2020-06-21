@@ -14,24 +14,24 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <h2>Accés</h2>
+    <h2>Log in</h2>
     <form action="#" th:action="@{/login}"
           th:object="${user}" method="post">
         <p>
-            <label>Nom d'usuari:</label>
+            <label>User name:</label>
             <input class="form_control" type="text" th:field="*{username}"/>
         <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
         </p>
         <p>
-            <label>Contrasenya:</label>
+            <label>Password:</label>
             <input class="form_control" type="password" th:field="*{password}"/>
         <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </p>
-        <input type="submit" value="Accedir" />
-        <input type="submit" value="Registrar" />
+        <input type="submit" value="Log in"/>
+        <input type="submit" value="Sing up"/>
     </form>
 
-    <td><a class="btn btn1" href="/elderly/mainPage">Correcto</a></td>
+    <td><a class="btn btn1" href="/elderly/mainPage">Correct</a></td>
     <!--<td><a class="btn btn1" href="/request/list/12344568F">Soy Elderly</a></td>-->
 </div>
 </body>
