@@ -39,6 +39,10 @@ public class CasManagerController {
 
         /*CasManager casManager = casManagerDao.getCasManagerByUserName(user.getUsername());
         model.addAttribute("user", casManager);*/
+        if (user.getTypeOfUser() != "casManager") {
+            return "redirect:/";
+        }
+
         return "casManager/mainPage";
     }
 }

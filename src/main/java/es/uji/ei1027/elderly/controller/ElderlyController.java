@@ -91,6 +91,11 @@ public class ElderlyController {
             model.addAttribute("user", new UserDetails());
             return "login";
         }
+
+        if (user.getTypeOfUser() != "elderly") {
+            return "redirect:/";
+        }
+
         Elderly elderly = elderlyDao.getElderlyByUserName(user.getUsername());
         model.addAttribute("user", elderly);
         return "elderly/mainPage";

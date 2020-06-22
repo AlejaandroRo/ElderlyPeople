@@ -2,6 +2,7 @@ package es.uji.ei1027.elderly.controller;
 
 import es.uji.ei1027.elderly.dao.ElderlyDao;
 import es.uji.ei1027.elderly.dao.RequestDao;
+import es.uji.ei1027.elderly.model.Aviso;
 import es.uji.ei1027.elderly.model.Elderly;
 import es.uji.ei1027.elderly.model.Request;
 import es.uji.ei1027.elderly.model.UserDetails;
@@ -41,10 +42,13 @@ public class RequestController {
                                    BindingResult bindingResult) {
         RequestValidator requestValidator = new RequestValidator();
         requestValidator.validate(request, bindingResult);
+        Aviso aviso = new Aviso();
         if (bindingResult.hasErrors())
             return "request/add";
         String dni = request.getDniElderly();
         requestDao.addRequest(request);
+        aviso.notificarTodoHaIdoBien();
+        aviso.notificarCorreoRequest(request);
         return "redirect:list/" + dni;
     }
 

@@ -2,6 +2,7 @@ package es.uji.ei1027.elderly.controller;
 
 import es.uji.ei1027.elderly.dao.CompanyDao;
 import es.uji.ei1027.elderly.dao.ContractDao;
+import es.uji.ei1027.elderly.model.Aviso;
 import es.uji.ei1027.elderly.model.Company;
 import es.uji.ei1027.elderly.model.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,8 @@ public class ContractController {
         } catch (DataIntegrityViolationException e) {
             throw new ElderlyException("The company must be created before creating the contract", "NotFound");
         }
+        Aviso aviso = new Aviso();
+        aviso.notificarCorreoContract(contract);
         return "redirect:list";
     }
 
