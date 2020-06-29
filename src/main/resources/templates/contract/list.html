@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Contract management</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <h1>Contract list</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Number</th>
+        <th scope="col">Date Beginning</th>
+        <th scope="col">Date Ending</th>
+        <th scope="col">Description</th>
+        <th scope="col">Service Type</th>
+        <th scope="col">Quantity Services</th>
+        <th scope="col">Units Of Measure</th>
+        <th scope="col">Price Unit</th>
+        <th scope="col">CIF Company</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr  th:each="contract: ${contracts}">
+        <td th:text="${contract.number}"></td>
+        <td th:text="${#temporals.format(contract.dateBeginning,'dd/MM/yyyy')}"></td>
+        <td th:text="${#temporals.format(contract.dateEnding,'dd/MM/yyyy')}"></td>
+        <td th:text="${contract.description}"></td>
+        <td th:text="${contract.serviceType}"></td>
+        <td th:text="${contract.quantityServices}"></td>
+        <td th:text="${contract.unitsOfMeasure}"></td>
+        <td th:text="${contract.priceUnit}"></td>
+        <td th:text="${contract.cifCompany}"></td>
+
+
+        <td><a class="btn btn-warning" th:href="@{/contract/update/{number}(number=${contract.number})} " role="button">Edit Contract</a>
+        <td><a class="btn btn-danger" th:href="@{/contract/delete/{number}(number=${contract.number})}" role="button">Delete</a>
+    </tr>
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="add" role="button">Add Contract</a>
+</div>
+</body>
+</html>
+

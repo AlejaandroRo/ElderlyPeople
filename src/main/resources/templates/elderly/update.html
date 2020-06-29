@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Edit Elderly</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
+</head>
+<body>
+<div layout:fragment="content">
+<h2>Edit Elderly</h2>
+
+<form action="#" th:action="@{/elderly/update}"
+      th:object="${elderly}" method="post">
+    <font size="4">
+    <table>
+        <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" /></td>
+        </tr>
+        <tr>
+            <td><label>Surname</label></td>
+            <td><input type="text" th:field="*{surname}" /></td>
+        </tr>
+        <tr>
+            <td><label>BirthDate</label></td>
+            <td><input type="date" th:field="*{birthDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Phone Number</label></td>
+            <td><input type="number" th:field="*{phoneNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Bank Account Number</label></td>
+            <td><input type="number" th:field="*{bankAccountNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td><input type="text" th:field="*{email}" /></td>
+        </tr>
+        <tr>
+            <td><label>User PWD</label></td>
+            <td><input type="text" th:field="*{userPwd}" /></td>
+        </tr>
+        <tr>
+            <td><label>Date Creation</label></td>
+            <td><input type="date" th:field="*{dateCreation}" /></td>
+        </tr>
+        <tr>
+            <td><label>Alergies</label></td>
+            <td><input type="text" th:field="*{alergies}" /></td>
+        </tr>
+        <tr>
+            <td><label>Diseases</label></td>
+            <td><input type="text" th:field="*{diseases}" /></td>
+        </tr>
+        <tr>
+            <td><label>Address</label></td>
+            <td><input type="text" th:field="*{address}" /></td>
+        </tr>
+        <tr>
+            <td><label>User CAS</label></td>
+            <td><input type="text" th:field="*{userCAS}" /></td>
+        </tr>
+
+        <div class="form-group row">
+            <div class="col-sm-offset-2 col-sm-4">
+            <button type="submit" class="btn btn-success">Confirm</button>
+            </div>
+        </div>
+
+    </table>
+    </font>
+</form>
+</div>
+</body>
+</html>

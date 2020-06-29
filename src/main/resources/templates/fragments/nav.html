@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <font size="3">
+    <div class="navbar-collapse collapse">
+        <ul class="navbar-nav mr-auto">
+
+            <!--redirect: session.gettype o algo asi-->
+            <li class="nav-item" ><a class="nav-link" href="/" th:href="@{/}">Main Page</a></li>
+            <li class="nav-item" ><a class="nav-link" href="/user/list" th:href="@{/user/list}">User Management</a></li>
+            <li class="nav-item" ><a class="nav-link" href="/us/aboutUs" th:href="@{/us/aboutUs}">About us</a></li>
+        </ul>
+    </div>
+    </font>
+</nav>
+</body>
+</html>

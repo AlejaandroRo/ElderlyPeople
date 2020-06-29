@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Company management</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+    <h1>Company list</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">CIF</th>
+        <th scope="col">Address</th>
+        <th scope="col">Contact Person Name</th>
+        <th scope="col">Contact Person Phone</th>
+        <th scope="col">Contact Person Email</th>
+        <th scope="col">Service Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  th:each="company: ${companies}">
+        <td th:text="${company.name}"></td>
+        <td th:text="${company.cif}"></td>
+        <td th:text="${company.address}"></td>
+        <td th:text="${company.contactPersonName}"></td>
+        <td th:text="${company.contactPersonPhoneNumber}"></td>
+        <td th:text="${company.contactPersonEmail}"></td>
+        <td th:text="${company.serviceType}"></td>
+
+        <td><a class="btn btn-warning" th:href="@{/company/update/{cif}(cif=${company.cif})} " role="button">Edit company</a>
+        <td><a class="btn btn-danger" th:href="@{/company/delete/{cif}(cif=${company.cif})} " role="button">Delete</a>
+    </tr>
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="add" role="button">Add Company</a>
+</div>
+</body>
+</html>
+

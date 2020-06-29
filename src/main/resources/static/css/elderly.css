@@ -1,0 +1,61 @@
+/* Estil aplicat al cos de la pàgina */
+body {
+   font-family: Helvetica, Arial, sans-serif;
+   background-color: white;
+}
+
+/* Capçalera de nivell 1 */
+h1 {
+   font-size: 35px;
+   color: dodgerBlue;
+   font-family: Calibri;
+}
+
+/* Capçalera de nivell 2 */
+h2 {
+   font-size: large;
+   color: dodgerBlue;
+}
+
+/* Classe CSS error */
+.error {
+     color: red;
+     font-size: 15px;
+}
+
+/* Classe CSS per atributs erronis */
+.needcorrection {
+     color: red;
+     background-color: #fdfea3;
+}
+
+.loggeduser {
+    color: gray;
+    text-align: right;
+    margin-right: 10pt;
+}
+
+input {
+    width: 100%;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin:8px 0;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+}
+
+input:hover {
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px dodgerBlue;
+}
+
+input:focus {
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px dodgerBlue;
+}
+
+.principal{
+    text-align: center;
+}

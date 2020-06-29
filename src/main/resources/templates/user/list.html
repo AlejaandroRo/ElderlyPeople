@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List of system users</title>
+    <meta charset="UTF-8"/>
+    <!-- Afegim una fulla d'estil (Bootstrap) -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css"/>
+    <!--          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>-->
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
+</head>
+
+<body>
+<h1>List of system users</h1>
+<div th:replace="fragments/logininfo" >...</div>
+<div th:if="${#lists.isEmpty(users)}">
+    There are no users
+</div>
+<table th:unless="${#lists.isEmpty(users)}"  class="table table-condensed">
+    <thead>
+    <tr>
+        <th>User name</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.username}"></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/" class="btn btn-primary" role="button">Return</a>
+</body>
+</html>

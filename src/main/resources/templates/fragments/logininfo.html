@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css"/>
+</head>
+<body>
+<div class="loggeduser" th:object="${session}">
+    <strong><p th:if="*{user == null}">
+        Not authenticated <a style="color:#5495ff" href="/login" th:href="@{/login}">Log in</a>
+    </p>
+    <p th:unless="*{user == null}">
+        Authenticated as <span th:text="*{user.username}"></span> <a
+            href="/logout" th:href="@{/logout}">Log Out</a>
+    </p>
+</div>
+</body>
+</html>

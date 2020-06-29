@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
+    <title>Elderly Request</title>
+</head>
+<body>
+<div class="principal" layout:fragment="content">
+
+    <div class="form-group row">
+    <h3>Choose how you want to request a service</h3>
+    </div>
+
+    <form th:object="${dni}">
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <a class="btn btn-success" th:href="@{/request/add/{dni}(dni=${dni})}">Telematic request</a>
+        </div>
+        <div class="col-sm-2">
+            <a class="btn btn-success" href="/elderly/phone">Phone call</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

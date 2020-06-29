@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Edit Elderly</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
+</head>
+<body>
+<div layout:fragment="content">
+<h2>Edit information</h2>
+    <h4><u>Add a comment to the request</u></h4>
+    <font size="4">
+<form action="#" th:action="@{/request/update}"
+      th:object="${request}" method="post">
+    <table>
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <input type="text" th:field="*{comments}"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-success">Confirm</button>
+            </div>
+        </div>
+    </table>
+    </form>
+    </font>
+</div>
+</body>
+</html>

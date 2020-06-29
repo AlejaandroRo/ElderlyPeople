@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Social Worker management</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Social Workers' list</h1>
+
+<div layout:fragment="content">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>User CAS</th>
+        <th>Phone number</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="worker: ${socialWorkers}">
+        <td th:text="${worker.name}"></td>
+        <td th:text="${worker.userCAS}"></td>
+        <td th:text="${worker.phoneNumber}"></td>
+        <td th:text="${worker.email}"></td>
+        <td><a class="btn btn-primary" th:href="@{/socialWorker/update/{userCAS}(userCAS=${worker.userCAS})}" role="button">Edit</a>
+        </td>
+        <td><a class="btn btn-danger" th:href="@{/socialWorker/delete/{userCAS}(userCAS=${worker.userCAS})}" role="button">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a class="btn btn-success" href="add" role="button">Add Social Worker</a>
+</div>
+</body>
+</html>
