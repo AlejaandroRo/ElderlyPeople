@@ -16,6 +16,7 @@
 
 <form action="#" th:action="@{/elderly/update}"
       th:object="${elderly}" method="post">
+
     <font size="4">
     <table>
         <tr>
@@ -71,11 +72,9 @@
             <td><input type="text" th:field="*{userCAS}" /></td>
         </tr>
 
-        <div class="form-group row">
-            <div class="col-sm-offset-2 col-sm-4">
-            <button type="submit" class="btn btn-success">Confirm</button>
-            </div>
-        </div>
+        <tr>
+            <td colspan="2"><button type="submit" class="btn btn-success">Confirm</button></td>
+        </tr>
 
     </table>
     </font>

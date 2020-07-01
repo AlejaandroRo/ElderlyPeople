@@ -1,5 +1,6 @@
 package es.uji.ei1027.elderly.dao;
 
+import es.uji.ei1027.elderly.model.Contract;
 import es.uji.ei1027.elderly.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -21,18 +22,25 @@ public class RequestDao {
 
     //Add request
     public void addRequest(Request request) {
-        Request ultimaRequest = jdbcTemplate.queryForObject("SELECT * FROM request WHERE number = (SELECT MAX(number) FROM request)", new RequestRowMapper());
-        int proximoNumeroDeRequest = ultimaRequest.getNumber() + 1;
+        int proximoNumeroDeRequest = 0;
+        try {
+            Request ultimaRequest = jdbcTemplate.queryForObject("SELECT * FROM request WHERE number = (SELECT MAX(number) FROM request)", new RequestRowMapper());
+            proximoNumeroDeRequest = ultimaRequest.getNumber() + 1;
+        } catch (EmptyResultDataAccessException e){
+            }
 
-        jdbcTemplate.update("INSERT INTO request VALUES(?, ?, current_date, 'Pendiente', ?, ?, ?, ?, ?, 0)", proximoNumeroDeRequest, request.getServiceType(),
+        jdbcTemplate.update("INSERT INTO request VALUES(?, ?, current_date, 'Pending', ?, ?, ?, ?, ?, NULL)", proximoNumeroDeRequest, request.getServiceType(),
                 request.getApprovedDate(), request.getRejectedDate(), request.getComments(), request.getEndDate(), request.getDniElderly());
     }
+
     //Update
     public void updateRequest(Request request) {
-        jdbcTemplate.update("UPDATE request SET number = ?, serviceType = ?, creationDate = ?, state = ?, approvedDate = ?, rejectedDate = ?, " +
-                "comments = ?, endDate = ?, dniElderly = ?, numberContract = ? WHERE number = ?", request.getNumber(), request.getServiceType(), request.getCreationDate(),
-                request.getState(), request.getApprovedDate(), request.getRejectedDate(), request.getComments(), request.getEndDate(), request.getDniElderly(),
-                request.getNumberContract(), request.getNumber());
+        if (request.getState().equals("Accepted")) {
+            jdbcTemplate.update("UPDATE request SET state = ?, approvedDate = current_date, numberContract = ? WHERE number = ?", request.getState(),
+                    request.getNumberContract(), request.getNumber());
+        } else {
+            jdbcTemplate.update("UPDATE request SET state = ?, rejectedDate = current_date WHERE number = ?", request.getState(), request.getNumber());
+        }
     }
 
     //Delete
@@ -85,6 +93,17 @@ public class RequestDao {
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
+        }
+    }
+
+    public List<Contract> getContractByType(String type) {
+        try {
+            return this.jdbcTemplate.query(
+                    "SELECT * FROM contract WHERE serviceType=?",
+                    new Object[] {type}, new ContractRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Contract>();
         }
     }
 }

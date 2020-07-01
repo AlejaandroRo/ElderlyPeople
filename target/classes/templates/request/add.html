@@ -34,10 +34,10 @@
                 <label class="control-label col-sm-2" for="serviceType">Service Type</label>
                 <div class="col-sm-4">
                     <select class="form_control" type="text" id="serviceType" th:field="*{serviceType}" required>
-                        <option value="No seleccionado">Selecciona el servicio</option>
-                        <option value="Comida a domicilio">Comida a domicilio</option>
-                        <option value="Servicio sanitario">Servicio sanitario</option>
-                        <option value="Limpieza">Limpieza</option>
+                        <option value="Not selected">Select the service type</option>
+                        <option value="Catering">Catering</option>
+                        <option value="Basic health care">Basic health care</option>
+                        <option value="Housekeeping services">Housekeeping services</option>
                     </select>
                 </div>
                 <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}"></td>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,6 +36,9 @@ public class ContractController {
     @RequestMapping(value="/add")
     public String addContract(Model model) {
         model.addAttribute("contract", new Contract());
+
+        List<Company> companyList = contractDao.getContractsAvailables();
+        model.addAttribute("companyList", companyList);
         return "contract/add";
     }
 
@@ -42,7 +46,11 @@ public class ContractController {
     public String processAddSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
         if(bindingResult.hasErrors())
             return "contract/add";
+
+        String name = contract.getCifCompany();
         try {
+            Company c = contractDao.getCifByName(name);
+            contract.setCifCompany(c.getCif());
             contractDao.addContract(contract);
         } catch (DuplicateKeyException e) {
             throw new ElderlyException("Number " + contract.getNumber() + " already exists, try again", "CPduplicada");
@@ -76,11 +84,18 @@ public class ContractController {
 
     @RequestMapping("/list")
     public String listContracts(Model model) {
-        model.addAttribute("contracts", contractDao.getContracts());
+        ArrayList<Contract> listaContratos = new ArrayList<Contract>();
+        listaContratos = (ArrayList<Contract>) contractDao.getContracts();
+        Company company = new Company();
+
+        for (Contract contract: listaContratos) {
+            company = contractDao.getCompanyNameByCIF(contract.getCifCompany());
+            contract.setNameCompany(company.getName());
+        }
+
+        model.addAttribute("contracts", listaContratos);
         return "contract/list";
     }
-
-
 }
 
 @Controller
@@ -100,12 +115,12 @@ class ContractValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Contract contract = (Contract) obj;
-        List<String> valors = Arrays.asList("Comida a domicilio", "Servicio sanitario", "Limpieza");
-        if(contract.getServiceType().equals("") || contract.getServiceType().equals("No seleccionado")) {
-            errors.rejectValue("serviceType", "obligatorio", "Debe elegir un tipo de servicio");
+        List<String> valors = Arrays.asList("Catering", "Basic health care", "Housekeeping services");
+        if(contract.getServiceType().equals("Not selected")) {
+            errors.rejectValue("serviceType", "obligatorio", "A type of service must be selected");
         }
         if (contract.getCifCompany().equals("null")) {
-            errors.rejectValue("cifCompany", "obligatorio", "Debe de estar registrada");
+            errors.rejectValue("cifCompany", "obligatorio", "Must be registered previously");
         }
     }
 }

@@ -2,10 +2,7 @@ package es.uji.ei1027.elderly.controller;
 
 import es.uji.ei1027.elderly.dao.ElderlyDao;
 import es.uji.ei1027.elderly.dao.RequestDao;
-import es.uji.ei1027.elderly.model.Aviso;
-import es.uji.ei1027.elderly.model.Elderly;
-import es.uji.ei1027.elderly.model.Request;
-import es.uji.ei1027.elderly.model.UserDetails;
+import es.uji.ei1027.elderly.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,9 +85,9 @@ public class RequestController {
         List<Request> rechazadas = new ArrayList<Request>();
 
         for (Request request: requestsByElderly) {
-            if (request.getState().equals("Aceptada"))
+            if (request.getState().equals("Accepted"))
                 aceptadas.add(request);
-            else if (request.getState().equals("Pendiente"))
+            else if (request.getState().equals("Pending"))
                 pendientes.add(request);
             else rechazadas.add(request);
         }
@@ -100,6 +97,52 @@ public class RequestController {
         model.addAttribute("rechazadas", rechazadas);
         model.addAttribute("dniElderly", dniElderly);
         return "request/list";
+    }
+
+    @RequestMapping(value="/cas/update/{number}", method = RequestMethod.GET)
+    public String evaluateRequest(Model model, @PathVariable int number) {
+        Request request = requestDao.getRequestByNumber(number);
+        List<Contract> listaContratos = requestDao.getContractByType(request.getServiceType());
+
+        System.out.println(request.toString());
+
+        model.addAttribute("request", request);
+        model.addAttribute("contracts", listaContratos);
+        return "request/casUpdate";
+    }
+
+    @RequestMapping(value="/cas/update", method = RequestMethod.POST)
+    public String processUpdateAndSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "request/casUpdate";
+
+        requestDao.updateRequest(request);
+        Request request1 = requestDao.getRequestByNumber(request.getNumber());
+        return "redirect:list/" + request1.getDniElderly();
+    }
+
+    @RequestMapping(value="/cas/list/{dniElderly}", method = RequestMethod.GET)
+    public String evaluateRequest(Model model, @PathVariable String dniElderly) {
+        List<Request> requestsByElderly;
+        requestsByElderly = requestDao.getRequestsByElderly(dniElderly);
+
+        List<Request> accepted = new ArrayList<Request>();
+        List<Request> pending = new ArrayList<Request>();
+        List<Request> rejected = new ArrayList<Request>();
+
+        for (Request request: requestsByElderly) {
+            if (request.getState().equals("Accepted"))
+                accepted.add(request);
+            else if (request.getState().equals("Pending"))
+                pending.add(request);
+            else rejected.add(request);
+        }
+
+        model.addAttribute("accepted", accepted);
+        model.addAttribute("pending", pending);
+        model.addAttribute("rejected", rejected);
+        model.addAttribute("dniElderly", dniElderly);
+        return "request/casList";
     }
 }
 
@@ -121,9 +164,9 @@ class RequestValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Request request = (Request) obj;
-        List<String> valors = Arrays.asList("Comida a domicilio", "Servicio sanitario", "Limpieza");
-        if(request.getServiceType().equals("") || request.getServiceType().equals("No seleccionado")) {
-            errors.rejectValue("serviceType", "obligatorio", "Debe elegir un tipo de servicio");
+        List<String> valors = Arrays.asList("Catering", "Basic health care", "Housekeeping services");
+        if(request.getServiceType().equals("") || request.getServiceType().equals("Not selected")) {
+            errors.rejectValue("serviceType", "obligatorio", "A type of service must be selected");
         }
 //        if (request.getDniElderly().equals("")) {
 //            errors.rejectValue("dniElderly", "obligatorio", "Debe que introducir su DNI");
@@ -133,11 +176,11 @@ class RequestValidator implements Validator {
 //        List<Request> requestsRepetidos = requestDao.getRequestsByElderly(request.getDniElderly());
 //        for (int i=0; i<requestsRepetidos.size(); i++) {
 //            if (requestsRepetidos.get(i).getServiceType().equals("Comida a domicilio")) {
-        if (request.getServiceType().equals("Comida a domicilio")) {
-            errors.rejectValue("serviceType", "obligatorio", "No puede volver a contratar un servicio que ya tiene contradado");
-             //   }
-           // }
-        }
+//        if (request.getServiceType().equals("Comida a domicilio")) {
+//            errors.rejectValue("serviceType", "obligatorio", "No puede volver a contratar un servicio que ya tiene contradado");
+//             //   }
+//           // }
+//        }
         //if (requestRepetida != null &&
 //        }
     }

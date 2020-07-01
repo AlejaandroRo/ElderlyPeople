@@ -8,18 +8,20 @@ head {
     background-color: black;
 }
 
-div {
-    text-align: center;
+table {
+    margin: 0 auto;
 }
 
 
+div {
+    text-align: center;
+}
 
 /* CapÃ§alera de nivell 1 */
 h1 {
    font-size: 35px;
    color: dodgerBlue;
    font-family: Calibri;
-   text-align: center;
 }
 
 /* CapÃ§alera de nivell 2 */

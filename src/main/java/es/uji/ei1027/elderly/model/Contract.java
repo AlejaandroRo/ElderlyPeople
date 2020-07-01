@@ -14,9 +14,10 @@ public class Contract {
     private String description;
     private String serviceType;
     private int quantityServices;
-    private int unitsOfMeasure;
+    private String unitsOfMeasure;
     private double priceUnit;
     private String cifCompany;
+    private String nameCompany;
 
     public Contract() {
     }
@@ -69,11 +70,11 @@ public class Contract {
         this.quantityServices = quantityServices;
     }
 
-    public int getUnitsOfMeasure() {
+    public String getUnitsOfMeasure() {
         return unitsOfMeasure;
     }
 
-    public void setUnitsOfMeasure(int unitsOfMeasure) {
+    public void setUnitsOfMeasure(String unitsOfMeasure) {
         this.unitsOfMeasure = unitsOfMeasure;
     }
 
@@ -91,6 +92,14 @@ public class Contract {
 
     public void setCifCompany(String cifCompany) {
         this.cifCompany = cifCompany;
+    }
+
+    public String getNameCompany() {
+        return nameCompany;
+    }
+
+    public void setNameCompany(String nameCompany) {
+        this.nameCompany = nameCompany;
     }
 
     @Override

@@ -26,7 +26,6 @@
             <th scope="col">Creation Date</th>
             <th scope="col">State</th>
             <th scope="col">Approved Date</th>
-            <th scope="col">Rejected Date</th>
             <th scope="col">Comments</th>
             <th scope="col">End Date</th>
 <!--            <th scope="col">DNI Elderly</th>-->
@@ -42,7 +41,6 @@
             <td th:text="${#temporals.format(request.creationDate,'dd/MM/yyyy')}"></td>
             <td th:text="${request.state}"></td>
             <td th:text="${#temporals.format(request.approvedDate,'dd/MM/yyyy')}"></td>
-            <td th:text="${#temporals.format(request.rejectedDate,'dd/MM/yyyy')}"></td>
             <td th:text="${request.comments}"></td>
             <td th:text="${#temporals.format(request.endDate,'dd/MM/yyyy')}"></td>
 <!--            <td th:text="${request.dniElderly}"></td>-->
@@ -89,7 +87,7 @@
             <!--            <td th:text="${request.numberContract}"></td>-->
 
             <td><a class="btn btn-warning" th:href="@{/request/update/{number}(number=${request.number})} " role="button">Edit</a>
-<!--            <td><a class="btn btn-danger" th:href="@{/request/delete/{dniElderly}/{number}(dniElderly=${request.dniElderly}, number=${request.number})} " role="button">Delete</a>-->
+            <td><a class="btn btn-danger" th:href="@{/request/delete/{dniElderly}/{number}(dniElderly=${request.dniElderly}, number=${request.number})} " role="button">Delete</a>
         </tr>
         </tbody>
     </table>
@@ -105,7 +103,6 @@
             <th scope="col">Service Type</th>
             <th scope="col">Creation Date</th>
             <th scope="col">State</th>
-            <th scope="col">Approved Date</th>
             <th scope="col">Rejected Date</th>
             <th scope="col">Comments</th>
             <th scope="col">End Date</th>
@@ -121,7 +118,6 @@
             <td th:text="${request.serviceType}"></td>
             <td th:text="${#temporals.format(request.creationDate,'dd/MM/yyyy')}"></td>
             <td th:text="${request.state}"></td>
-            <td th:text="${#temporals.format(request.approvedDate,'dd/MM/yyyy')}"></td>
             <td th:text="${#temporals.format(request.rejectedDate,'dd/MM/yyyy')}"></td>
             <td th:text="${request.comments}"></td>
             <td th:text="${#temporals.format(request.endDate,'dd/MM/yyyy')}"></td>

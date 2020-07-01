@@ -25,7 +25,7 @@
         <th scope="col">Quantity Services</th>
         <th scope="col">Units Of Measure</th>
         <th scope="col">Price Unit</th>
-        <th scope="col">CIF Company</th>
+        <th scope="col">Company Name</th>
 
     </tr>
     </thead>
@@ -39,7 +39,7 @@
         <td th:text="${contract.quantityServices}"></td>
         <td th:text="${contract.unitsOfMeasure}"></td>
         <td th:text="${contract.priceUnit}"></td>
-        <td th:text="${contract.cifCompany}"></td>
+        <td th:text="${contract.nameCompany}"></td>
 
 
         <td><a class="btn btn-warning" th:href="@{/contract/update/{number}(number=${contract.number})} " role="button">Edit Contract</a>

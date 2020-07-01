@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Edit Elderly</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2>Accept or reject the request</h2>
+<!--    <h4><u>Add a comment to the request</u></h4>-->
+    <font size="4">
+        <form action="#" th:action="@{/request/cas/update}"
+              th:object="${request}" method="post">
+
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" for="number">Request number</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="number" th:field="*{number}" readonly>
+                    </div>
+                    <td th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></td>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Accepted" value="Accepted" th:field="*{state}">
+                    <label class="form-check-label" for="state">
+                        Accept
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Rejected" value="Rejected" th:field="*{state}">
+                    <label class="form-check-label" for="state">
+                        Reject
+                    </label>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" for="numberContract">Contract to asign:</label>
+                    <div class="col-sm-4">
+                        <select class="form_control" type="text" id="numberContract" th:field="*{numberContract}" required>
+<!--                            <option value="Not selected">Select the contract</option>-->
+                            <option th:each="contract : ${contracts}"
+                                    th:value="${contract.number}"
+                                    th:text="${contract.number}"></option>
+                            <td th:if="${#fields.hasErrors('numberContract')}" th:errors="*{numberContract}"></td>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success">Confirm</button>
+                    </div>
+                </div>
+        </form>
+    </font>
+</div>
+</body>
+</html>

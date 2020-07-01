@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>CAS Commitee</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!--    <link rel="stylesheet" type="text/css" href="/css/styleIndex.css"-->
+    <!--          th:href="@{/css/styleIndex.css}"/>-->
+</head>
+<body>
+
+<div layout:fragment="content">
+    <h1>CAS Commitee</h1>
+    <h4><u>Evaluate new requests</u></h4>
+    <div class="container">
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <a class="btn btn-success" href="../elderly/cas/list">Evaluate pending request</a>
+            </div>
+            <div class="col-sm-2">
+                <td><a class="btn btn-success" href="../company/list">List of companies</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -78,4 +78,28 @@ public class ContractDao {
         }
     }
 
+    public List<Company> getContractsAvailables() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM company", new CompanyRowMapper());
+        } catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Company>();
+        }
+    }
+
+    public Company getCifByName(String name) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM company where name=?", new CompanyRowMapper(), name);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public Company getCompanyNameByCIF(String CIF) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM company WHERE cif = ?", new CompanyRowMapper(), CIF);
+        } catch (EmptyResultDataAccessException e) {
+            return new Company();
+        }
+    }
 }

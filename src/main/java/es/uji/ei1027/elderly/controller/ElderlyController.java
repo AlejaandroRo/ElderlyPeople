@@ -68,6 +68,12 @@ public class ElderlyController {
         return "elderly/list";
     }
 
+    @RequestMapping("/cas/list")
+    public String listCasElderlies(Model model) {
+        model.addAttribute("elderlies", elderlyDao.getElderlies());
+        return "elderly/casList";
+    }
+
     @RequestMapping("/aboutUs")
     public String aboutUs() {
         return "us/aboutUs";

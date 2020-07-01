@@ -19,7 +19,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2" for="number">Number contract:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="number" th:field="*{number}" required />
+                <input type="text" class="form-control" id="number" th:field="*{number}" required/>
             </div>
             <td th:if="${#fields.hasErrors('number')}" th:errors="*{number}" class="error"/>
         </div>
@@ -50,10 +50,10 @@
             <label class="control-label col-sm-2" for="serviceType">Service Type:</label>
             <div class="col-sm-4">
                 <select class="form_control" type="text" id="serviceType" th:field="*{serviceType}" required>
-                    <option value="No seleccionado">Selecciona el servicio</option>
-                    <option value="Comida a domicilio">Comida a domicilio</option>
-                    <option value="Servicio sanitario">Servicio sanitario</option>
-                    <option value="Limpieza">Limpieza</option>
+                    <option value="Not selected">Select the service type</option>
+                    <option value="Catering">Catering</option>
+                    <option value="Basic health care">Basic health care</option>
+                    <option value="Housekeeping services">Housekeeping services</option>
                 </select>
             </div>
         </div>
@@ -68,7 +68,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2" for="unitsOfMeasure">Units of Measure:</label>
             <div class="col-sm-4">
-                <input type="number" class="form-control" id="unitsOfMeasure" th:field="*{unitsOfMeasure}"/>
+                <input type="text" class="form-control" id="unitsOfMeasure" th:field="*{unitsOfMeasure}"/>
             </div>
         </div>
 
@@ -80,9 +80,16 @@
         </div>
 
         <div class="form-group row">
-            <label class="control-label col-sm-2" for="cifCompany">CIF Company:</label>
+            <label class="control-label col-sm-2" for="cifCompany">Company:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="cifCompany" th:field="*{cifCompany}" required />
+                <select class="form_control" type="text" id="cifCompany" th:field="*{cifCompany}" required>
+                    <option value="Not selected">Select the company</option>
+                    <option th:each="company : ${companyList}"
+                            th:value="${company.name}"
+                            th:text="${company.name}"></option>
+                    <td th:if="${#fields.hasErrors('cifCompany')}" th:errors="*{cifCompany}"></td>
+                </select>
+
             </div>
         </div>
 
