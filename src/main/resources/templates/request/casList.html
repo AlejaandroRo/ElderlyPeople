@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Contract management</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+          th:href="@{/css/elderly.css}"/>
+</head>
+<body>
+<h1>Contract list</h1>
+<div layout:fragment="content">
+    <font size="4">
+        <h1 style="color: #3fd053">Accepted Requests</h1>
+        <div th:if="${#lists.isEmpty(accepted)}">
+            <h4>There are no accepted requests</h4>
+        </div>
+        <table th:unless="${#lists.isEmpty(accepted)}" class="table table-striped">
+            <thead>
+            <tr>
+                <!--            <th scope="col">Number</th>-->
+                <th scope="col">Service Type</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">State</th>
+                <th scope="col">Approved Date</th>
+                <th scope="col">Rejected Date</th>
+                <th scope="col">Comments</th>
+                <th scope="col">End Date</th>
+                <!--            <th scope="col">DNI Elderly</th>-->
+                <!--            <th scope="col">Number Contract</th>-->
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="request: ${accepted}">
+                <!--            <td th:text="${request.number}"></td>-->
+                <td th:text="${request.serviceType}"></td>
+                <td th:text="${#temporals.format(request.creationDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${request.state}"></td>
+                <td th:text="${#temporals.format(request.approvedDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(request.rejectedDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${request.comments}"></td>
+                <td th:text="${#temporals.format(request.endDate,'dd/MM/yyyy')}"></td>
+                <!--            <td th:text="${request.dniElderly}"></td>-->
+                <!--            <td th:text="${request.numberContract}"></td>-->
+
+                <!--            <td><a class="btn btn-warning" th:href="@{/request/update/{number}(number=${request.number})} " role="button">Edit</a>-->
+                <!--            <td><a class="btn btn-danger" th:href="@{/request/delete/{dniElderly}/{number}(dniElderly=${request.dniElderly}, number=${request.number})} " role="button">Delete</a>-->
+            </tr>
+            </tbody>
+        </table>
+
+        <h1 style="color:orange">Pending requests</h1>
+        <div th:if="${#lists.isEmpty(pending)}">
+            <h4>No pending requests</h4>
+        </div>
+        <table th:unless="${#lists.isEmpty(pending)}" class="table table-striped">
+            <thead>
+            <tr>
+                <!--            <th scope="col">Number</th>-->
+                <th scope="col">Service Type</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">State</th>
+                <th scope="col">Approved Date</th>
+                <th scope="col">Rejected Date</th>
+                <th scope="col">Comments</th>
+                <th scope="col">End Date</th>
+                <!--            <th scope="col">DNI Elderly</th>-->
+                <!--            <th scope="col">Number Contract</th>-->
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="request: ${pending}">
+                <!--            <td th:text="${request.number}"></td>-->
+                <td th:text="${request.serviceType}"></td>
+                <td th:text="${#temporals.format(request.creationDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${request.state}"></td>
+                <td th:text="${#temporals.format(request.approvedDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(request.rejectedDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${request.comments}"></td>
+                <td th:text="${#temporals.format(request.endDate,'dd/MM/yyyy')}"></td>
+                <!--            <td th:text="${request.dniElderly}"></td>-->
+                <!--            <td th:text="${request.numberContract}"></td>-->
+
+                <td><a class="btn btn-warning" th:href="@{/request/cas/update/{number}(number=${request.number})} " role="button">Edit</a>
+                    <!--            <td><a class="btn btn-danger" th:href="@{/request/delete/{dniElderly}/{number}(dniElderly=${request.dniElderly}, number=${request.number})} " role="button">Delete</a>-->
+            </tr>
+            </tbody>
+        </table>
+
+        <h1 style="color:red">Rejected Requests</h1>
+        <div th:if="${#lists.isEmpty(rejected)}">
+            <h4>There are no rejected requests</h4>
+        </div>
+        <table th:unless="${#lists.isEmpty(rejected)}" class="table table-striped">
+            <thead>
+            <tr>
+                <!--            <th scope="col">Number</th>-->
+                <th scope="col">Service Type</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">State</th>
+                <th scope="col">Approved Date</th>
+                <th scope="col">Rejected Date</th>
+                <th scope="col">Comments</th>
+                <th scope="col">End Date</th>
+                <!--            <th scope="col">DNI Elderly</th>-->
+                <!--            <th scope="col">Number Contract</th>-->
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="request: ${rejected}">
+                <!--            <td th:text="${request.number}"></td>-->
+                <td th:text="${request.serviceType}"></td>
+                <td th:text="${#temporals.format(request.creationDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${request.state}"></td>
+                <td th:text="${#temporals.format(request.approvedDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(request.rejectedDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${request.comments}"></td>
+                <td th:text="${#temporals.format(request.endDate,'dd/MM/yyyy')}"></td>
+                <!--            <td th:text="${request.dniElderly}"></td>-->
+                <!--            <td th:text="${request.numberContract}"></td>-->
+
+                <!--<td><a class="btn btn-warning" th:href="@{/request/update/{number}(number=${request.number})} " role="button">Edit</a>
+                <td><a class="btn btn-danger" th:href="@{/request/delete/{dniElderly}/{number}(dniElderly=${request.dniElderly}, number=${request.number})} " role="button">Delete</a>-->
+            </tr>
+            </tbody>
+        </table>
+
+        <!--<a class="btn btn-success" th:href="@{../add/{dniElderly}(dniElderly=${dniElderly})}" role="button">Add Request</a>-->
+    </font>
+</div>
+</body>
+</html>
+

@@ -23,7 +23,7 @@ public class Aviso {
     public void notificarCorreoContract(Contract contract) {
         System.out.println("===========================================================================");
         System.out.println("E-MAIL");
-        System.out.println("We confirm to the person with CIF " + contract.getCifCompany () + " that the contract has been successfully added");
+        System.out.println("We confirm to the company with CIF " + contract.getCifCompany () + " that the contract has been successfully added");
         System.out.println("The contract includes:");
         System.out.println("- Service Type: " + contract.getServiceType());
         System.out.println("- Date Beginning: " + contract.getDateBeginning());

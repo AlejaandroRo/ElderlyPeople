@@ -1,18 +1,11 @@
 package es.uji.ei1027.elderly.dao;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import es.uji.ei1027.elderly.model.CasManager;
-import es.uji.ei1027.elderly.model.Elderly;
-import es.uji.ei1027.elderly.model.Volunteer;
+import es.uji.ei1027.elderly.model.*;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import es.uji.ei1027.elderly.model.UserDetails;
 
 import javax.sql.DataSource;
 
@@ -45,7 +38,14 @@ public class FakeUserProvider implements UserDao {
                 user.setUsername(casManager.getUsername());
                 user.setPassword(passwordEncryptor.encryptPassword(casManager.getPwd()));
             } catch (EmptyResultDataAccessException ex) {
-                return null;
+                try {
+                    CasCommitee casCommittee = jdbcTemplate.queryForObject("SELECT * FROM casCommitee WHERE username = ?", new CasCommiteeRowMapper(), username);
+                    user.setTypeOfUser("casCommitee");
+                    user.setUsername(casCommittee.getUsername());
+                    user.setPassword(passwordEncryptor.encryptPassword(casCommittee.getPwd()));
+                } catch (EmptyResultDataAccessException exc) {
+                    return null;
+                }
             }
         }
 

@@ -21,9 +21,9 @@
             <th scope="col">Surname</th>
             <th scope="col">Birth Date</th>
             <th scope="col">Phone Number</th>
-    <!--        <th scope="col">BankAccount</th>-->
+            <!--        <th scope="col">BankAccount</th>-->
             <th scope="col">Email</th>
-    <!--        <th scope="col">UserPwd</th>-->
+            <!--        <th scope="col">UserPwd</th>-->
             <th scope="col">Date Creation</th>
             <th scope="col">Alergies</th>
             <th scope="col">Diseases</th>
@@ -38,18 +38,18 @@
             <td th:text="${elderly.surname}"></td>
             <td th:text="${#temporals.format(elderly.birthDate,'dd/MM/yyyy')}"></td>
             <td th:text="${elderly.phoneNumber}"></td>
-    <!--        <td th:text="${elderly.bankAccountNumber}"></td>-->
+            <!--        <td th:text="${elderly.bankAccountNumber}"></td>-->
             <td th:text="${elderly.email}"></td>
-    <!--        <td th:text="${elderly.userPwd}"></td>-->
+            <!--        <td th:text="${elderly.userPwd}"></td>-->
             <td th:text="${#temporals.format(elderly.dateCreation,'dd/MM/yyyy')}"></td>
             <td th:text="${elderly.alergies}"></td>
             <td th:text="${elderly.diseases}"></td>
             <td th:text="${elderly.address}"></td>
             <td th:text="${elderly.userCAS}"></td>
 
-            <td><a class="btn btn-primary" th:href="@{/request/list/{dniElderly}(dniElderly=${elderly.dni})} " role="button">See Request</a>
-            <!--<td><a class="btn btn-warning" th:href="@{/elderly/update/{dni}(dni=${elderly.dni})} " role="button">Edit</a>-->
-            <!--<td><a class="btn btn-danger" th:href="@{/elderly/delete/{dni}(dni=${elderly.dni})} " role="button">Delete</a>-->
+            <td><a class="btn btn-primary" th:href="@{/request/cas/list/{dniElderly}(dniElderly=${elderly.dni})} " role="button">See Request</a>
+                <!--<td><a class="btn btn-warning" th:href="@{/elderly/update/{dni}(dni=${elderly.dni})} " role="button">Edit</a>-->
+                <!--<td><a class="btn btn-danger" th:href="@{/elderly/delete/{dni}(dni=${elderly.dni})} " role="button">Delete</a>-->
 
         </tr>
         </tbody>

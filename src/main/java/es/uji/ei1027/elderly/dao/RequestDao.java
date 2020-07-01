@@ -1,5 +1,6 @@
 package es.uji.ei1027.elderly.dao;
 
+import es.uji.ei1027.elderly.model.Contract;
 import es.uji.ei1027.elderly.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -30,7 +31,7 @@ public class RequestDao {
         }
 
 
-        jdbcTemplate.update("INSERT INTO request VALUES(?, ?, current_date, 'Pending', ?, ?, ?, ?, ?, 0)", proximoNumeroDeRequest, request.getServiceType(),
+        jdbcTemplate.update("INSERT INTO request VALUES(?, ?, current_date, 'Pending', ?, ?, ?, ?, ?, NULL)", proximoNumeroDeRequest, request.getServiceType(),
                 request.getApprovedDate(), request.getRejectedDate(), request.getComments(), request.getEndDate(), request.getDniElderly());
     }
     //Update
@@ -40,6 +41,7 @@ public class RequestDao {
                 request.getState(), request.getApprovedDate(), request.getRejectedDate(), request.getComments(), request.getEndDate(), request.getDniElderly(),
                 request.getNumberContract(), request.getNumber());
     }
+
 
     //Delete
     public void deleteRequest(int number) {
@@ -91,6 +93,17 @@ public class RequestDao {
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
+        }
+    }
+
+    public List<Contract> getContractByType(String type) {
+        try {
+            return this.jdbcTemplate.query(
+                    "SELECT * FROM contract WHERE servicetype=?",
+                    new Object[] {type}, new ContractRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Contract>();
         }
     }
 }

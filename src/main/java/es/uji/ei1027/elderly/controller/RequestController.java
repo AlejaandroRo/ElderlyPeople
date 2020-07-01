@@ -2,10 +2,7 @@ package es.uji.ei1027.elderly.controller;
 
 import es.uji.ei1027.elderly.dao.ElderlyDao;
 import es.uji.ei1027.elderly.dao.RequestDao;
-import es.uji.ei1027.elderly.model.Aviso;
-import es.uji.ei1027.elderly.model.Elderly;
-import es.uji.ei1027.elderly.model.Request;
-import es.uji.ei1027.elderly.model.UserDetails;
+import es.uji.ei1027.elderly.model.*;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,6 +74,24 @@ public class RequestController {
         return "request/update";
     }
 
+    @RequestMapping(value="/cas/update/{number}", method = RequestMethod.GET)
+    public String evaluateRequest(Model model, @PathVariable int number) {
+        Request request = requestDao.getRequestByNumber(number);
+        List<Contract> listContract = requestDao.getContractByType(request.getServiceType());
+        //request.setState("Accepted");
+        model.addAttribute("request", requestDao.getRequestByNumber(number));
+        model.addAttribute("listContract", listContract);
+        return "request/casUpdate";
+    }
+
+    @RequestMapping(value="/cas/update", method = RequestMethod.POST)
+    public String processUpdateAndSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "request/cas/update";
+        requestDao.updateRequest(request);
+        return "redirect:list";
+    }
+
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
@@ -107,9 +122,9 @@ public class RequestController {
         List<Request> rejected = new ArrayList<Request>();
 
         for (Request request: requestsByElderly) {
-            if (request.getState().equals("Aceptada"))
+            if (request.getState().equals("Accepted"))
                 accepted.add(request);
-            else if (request.getState().equals("Pendiente"))
+            else if (request.getState().equals("Pending"))
                 pending.add(request);
             else rejected.add(request);
         }
@@ -119,6 +134,30 @@ public class RequestController {
         model.addAttribute("rejected", rejected);
         model.addAttribute("dniElderly", dniElderly);
         return "request/list";
+    }
+
+    @RequestMapping(value="/cas/list/{dniElderly}", method = RequestMethod.GET)
+    public String evaluateRequest(Model model, @PathVariable String dniElderly) {
+        List<Request> requestsByElderly;
+        requestsByElderly = requestDao.getRequestsByElderly(dniElderly);
+
+        List<Request> accepted = new ArrayList<Request>();
+        List<Request> pending = new ArrayList<Request>();
+        List<Request> rejected = new ArrayList<Request>();
+
+        for (Request request: requestsByElderly) {
+            if (request.getState().equals("Accepted"))
+                accepted.add(request);
+            else if (request.getState().equals("Pending"))
+                pending.add(request);
+            else rejected.add(request);
+        }
+
+        model.addAttribute("accepted", accepted);
+        model.addAttribute("pending", pending);
+        model.addAttribute("rejected", rejected);
+        model.addAttribute("dniElderly", dniElderly);
+        return "request/casList";
     }
 }
 

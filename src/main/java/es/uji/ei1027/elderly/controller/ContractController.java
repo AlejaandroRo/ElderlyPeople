@@ -50,7 +50,6 @@ public class ContractController {
         if(bindingResult.hasErrors())
             return "contract/add";
         String name = contract.getCifCompany();
-        System.out.println(name);
         //contract = contractDao.getCifByName(name);
 
         try {
@@ -61,9 +60,6 @@ public class ContractController {
             throw new ElderlyException("A cif must be choosen", "NotFound");
         } catch (DuplicateKeyException e) {
             throw new ElderlyException("Number " + contract.getNumber() + " already exists, try again", "CPduplicada");
-        } catch (DataIntegrityViolationException e) {
-            System.out.println(contract);
-            throw new ElderlyException("The company must be created before creating the contract", "NotFound");
         }
         Aviso aviso = new Aviso();
         aviso.notificarCorreoContract(contract);
