@@ -30,6 +30,16 @@ public class RequestController {
     public String addRequest(Model model, @PathVariable String dniElderly) {
         Request request = new Request();
         request.setDniElderly(dniElderly);
+
+        List<Request> requestsByElderly;
+        requestsByElderly = requestDao.getRequestsByElderly(request.getDniElderly());
+
+        for (Request req: requestsByElderly) {
+            if (req.getServiceType().equals(request.getServiceType()) && req.getState().equals("Accepted")) {
+                throw new ElderlyException("Service type " + req.getServiceType() + " already exists, try again another service", "ServiceDuplicado");
+            }
+        }
+
         model.addAttribute("request", request);
         return "request/add";
     }
@@ -42,6 +52,14 @@ public class RequestController {
         Aviso aviso = new Aviso();
         if (bindingResult.hasErrors())
             return "request/add";
+        List<Request> requestsByElderly = requestDao.getRequestsByElderly(request.getDniElderly());
+
+        for (Request req: requestsByElderly) {
+            if (req.getServiceType().equals(request.getServiceType()) && req.getState().equals("Accepted")) {
+                throw new ElderlyException("Service type " + req.getServiceType() + " already exists, try again another service", "ServiceDuplicado");
+            }
+        }
+
         String dni = request.getDniElderly();
         requestDao.addRequest(request);
         aviso.notificarTodoHaIdoBien();
@@ -59,14 +77,14 @@ public class RequestController {
     public String processUpdateSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "request/update";
-        requestDao.updateRequest(request);
-        return "redirect:list";
+        requestDao.updateRequestElderly(request);
+        return "redirect:list/" + request.getDniElderly();
     }
 
     @RequestMapping(value="/delete/{dniElderly}/{number}")
     public String processDelete(@PathVariable String dniElderly, @PathVariable int number) {
         requestDao.deleteRequest(number);
-        return "redirect:../../list/" + dniElderly;
+        return "redirect:../../cas/list/" + dniElderly;
     }
 
     @RequestMapping("/list")
@@ -104,7 +122,6 @@ public class RequestController {
         Request request = requestDao.getRequestByNumber(number);
         List<Contract> listaContratos = requestDao.getContractByType(request.getServiceType());
 
-        System.out.println(request.toString());
 
         model.addAttribute("request", request);
         model.addAttribute("contracts", listaContratos);

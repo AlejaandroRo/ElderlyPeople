@@ -43,6 +43,10 @@ public class RequestDao {
         }
     }
 
+    public void updateRequestElderly(Request request) {
+        jdbcTemplate.update("UPDATE request SET comments = ? WHERE number = ?", request.getComments(), request.getNumber());
+    }
+
     //Delete
     public void deleteRequest(int number) {
         jdbcTemplate.update("DELETE FROM request WHERE number = ?", number);

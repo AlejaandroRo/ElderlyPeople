@@ -22,7 +22,7 @@ public class Aviso {
         String msg = "We confirm to the person with DNI " + request.getDniElderly() + " that the service request " + request.getServiceType() + " has been sent succesfully.";
         System.out.println(msg);
         System.out.println("- Creation date: " + formatter.format(calendar.getTime()));
-        System.out.println("- Request state: Pendiente");
+        System.out.println("- Request state: Pending");
         System.out.println("We will notify you when we accept or reject your request");
         System.out.println("===========================================================================");
     }

@@ -13,11 +13,28 @@
 <body>
 <div layout:fragment="content">
 <h2>Edit information</h2>
-    <h4><u>Add a comment to the request</u></h4>
     <font size="4">
 <form action="#" th:action="@{/request/update}"
       th:object="${request}" method="post">
     <table>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="dniElderly">Your DNI</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="dniElderly" th:field="*{dniElderly}" readonly>
+            </div>
+            <td th:if="${#fields.hasErrors('dniElderly')}" th:errors="*{dniElderly}"></td>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="number">Request number</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="number" th:field="*{number}" readonly>
+            </div>
+            <td th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></td>
+        </div>
+
+        <h4><u>Add a comment to the request</u></h4>
         <div class="form-group row">
             <div class="col-sm-4">
                 <input type="text" th:field="*{comments}"/>

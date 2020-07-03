@@ -20,7 +20,7 @@
 
                 <div class="form-group row">
                     <label class="control-label col-sm-2" for="number">Request number</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <input type="text" class="form-control" id="number" th:field="*{number}" readonly>
                     </div>
                     <td th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></td>
