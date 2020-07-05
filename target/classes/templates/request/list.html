@@ -87,7 +87,7 @@
             <!--            <td th:text="${request.numberContract}"></td>-->
 
             <td><a class="btn btn-warning" th:href="@{/request/update/{number}(number=${request.number})} " role="button">Edit</a>
-            <td><a class="btn btn-danger" th:href="@{/request/delete/{dniElderly}/{number}(dniElderly=${request.dniElderly}, number=${request.number})} " role="button">Delete</a>
+            <td><a class="btn btn-danger" th:href="@{/request/deleteRequest/{dniElderly}/{number}(dniElderly=${request.dniElderly}, number=${request.number})} " role="button">Delete</a>
         </tr>
         </tbody>
     </table>

@@ -55,7 +55,7 @@ public class RequestController {
         List<Request> requestsByElderly = requestDao.getRequestsByElderly(request.getDniElderly());
 
         for (Request req: requestsByElderly) {
-            if (req.getServiceType().equals(request.getServiceType()) && req.getState().equals("Accepted")) {
+            if (req.getServiceType().equals(request.getServiceType()) && (req.getState().equals("Accepted") || req.getState().equals("Pending"))) {
                 throw new ElderlyException("Service type " + req.getServiceType() + " already exists, try again another service", "ServiceDuplicado");
             }
         }
@@ -85,6 +85,12 @@ public class RequestController {
     public String processDelete(@PathVariable String dniElderly, @PathVariable int number) {
         requestDao.deleteRequest(number);
         return "redirect:../../cas/list/" + dniElderly;
+    }
+
+    @RequestMapping(value="/deleteRequest/{dniElderly}/{number}")
+    public String processDeleteRequest(@PathVariable String dniElderly, @PathVariable int number) {
+        requestDao.deleteRequest(number);
+        return "redirect:../../list/" + dniElderly;
     }
 
     @RequestMapping("/list")
@@ -135,6 +141,10 @@ public class RequestController {
 
         requestDao.updateRequest(request);
         Request request1 = requestDao.getRequestByNumber(request.getNumber());
+
+        Aviso aviso = new Aviso();
+        aviso.notificacionCorreoRequestAceptadaRechaza(request1);
+
         return "redirect:list/" + request1.getDniElderly();
     }
 

@@ -1,5 +1,8 @@
 package es.uji.ei1027.elderly.model;
 
+import es.uji.ei1027.elderly.dao.ElderlyDao;
+import es.uji.ei1027.elderly.dao.RequestDao;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -27,9 +30,14 @@ public class Aviso {
         System.out.println("===========================================================================");
     }
 
-    public void notificacionCorreoRequestAceptada() {
-
+    public void notificacionCorreoRequestAceptadaRechaza(Request request) {
+        System.out.println("===========================================================================");
+        System.out.println("E-MAIL");
+        String msg = "We confirm to the person with DNI " + request.getDniElderly() + " that the request for the service " + request.getServiceType() + " has been " + request.getState();
+        System.out.println(msg);
+        System.out.println("===========================================================================");
     }
+
 
     public void notificarCorreoContract(Contract contract) {
         System.out.println("===========================================================================");
